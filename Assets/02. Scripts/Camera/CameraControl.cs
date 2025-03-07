@@ -4,5 +4,22 @@ using UnityEngine;
 
 public class CameraControl : MonoBehaviour
 {
-    PlayerInput playerInput;
+    private PlayerInput playerInput;
+
+    private void OnValidate()
+    {
+        playerInput = GetComponentInParent<PlayerInput>();
+    }
+
+
+    private void LateUpdate()
+    {
+        
+    }
+
+
+    private void CameraRotate()
+    {
+
+    }
 }

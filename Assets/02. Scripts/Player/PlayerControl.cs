@@ -2,24 +2,39 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerControl : MonoBehaviour
 {
     private PlayerStatus _playerStatus;
     private PlayerInput _playerInput;
     private Rigidbody _rigidbody;
+    private Camera _camera;
+
+    private float _curCameraXRot;
 
     private void OnValidate()
     {
+        _camera = Camera.main;
         _playerStatus = GetComponent<PlayerStatus>();
         _playerInput = GetComponent<PlayerInput>();
         _rigidbody = GetComponent<Rigidbody>();
+    }
+
+    private void Awake()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void FixedUpdate()
     {
         Move();
         Jump();
+    }
+
+    private void LateUpdate()
+    {
+        Rotate();
     }
 
 
@@ -43,6 +58,16 @@ public class PlayerControl : MonoBehaviour
     }
 
 
+    //플레이어를 회전시킴
+    private void Rotate()
+    {
+        _curCameraXRot += _playerInput.MousePosition.y;
+        _camera.transform.localEulerAngles = -_curCameraXRot * _playerStatus.Sensitivity * Vector3.right;
+
+        transform.eulerAngles += _playerInput.MousePosition.x * _playerStatus.Sensitivity * Vector3.up;
+    }
+
+
     //플레이어가 땅에 닿고 있는지 확인하고 반환하는 메서드
     private bool isGround()
     {
@@ -57,12 +82,16 @@ public class PlayerControl : MonoBehaviour
         for(int i = 0; i < ray.Length; i++)
         {
             Debug.Log(Physics.Raycast(ray[i], 0.02f, LayerMask.GetMask("Ground")));
-            Debug.DrawRay(transform.position, Vector2.down* 0.02f, Color.red);
             if (Physics.Raycast(ray[i], 0.02f, LayerMask.GetMask("Ground")))
             {
                 return true;
             }
         }
         return false;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Debug.DrawRay(transform.position, Vector2.down * 0.02f, Color.red);
     }
 }

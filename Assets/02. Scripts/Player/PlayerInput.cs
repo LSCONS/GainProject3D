@@ -23,7 +23,8 @@ public class PlayerInput : MonoBehaviour
         input.Player.Move.canceled += StopMove;
         input.Player.Jump.performed += OnJump;
         input.Player.Jump.canceled += StopJump;
-        input.Player.MousePosition.performed += OnMousePosition;
+        input.Player.MousePosition.started += OnMousePosition;
+        input.Player.MousePosition.canceled += StopMousePosition;
 
         input.Enable();
     }
@@ -34,7 +35,8 @@ public class PlayerInput : MonoBehaviour
         input.Player.Move.canceled -= StopMove;
         input.Player.Jump.performed -= OnJump;
         input.Player.Jump.canceled -= StopJump;
-        input.Player.MousePosition.performed -= OnMousePosition;
+        input.Player.MousePosition.started -= OnMousePosition;
+        input.Player.MousePosition.canceled += StopMousePosition;
 
         input.Disable();
     }
@@ -66,5 +68,11 @@ public class PlayerInput : MonoBehaviour
     private void OnMousePosition(InputAction.CallbackContext context)
     {
         mousePosition = context.ReadValue<Vector2>();
+        Debug.Log(mousePosition);
+    }
+
+    private void StopMousePosition(InputAction.CallbackContext context)
+    {
+        mousePosition = Vector2.zero;
     }
 }
