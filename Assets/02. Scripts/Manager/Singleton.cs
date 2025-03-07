@@ -21,7 +21,6 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
             }
             return _instance;
         }
-
     }
 
     protected virtual void Awake()
