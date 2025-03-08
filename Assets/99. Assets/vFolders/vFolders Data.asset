@@ -1,0 +1,103 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adb9c12a8c6c949f7af83a3d238359d0, type: 3}
+  m_Name: vFolders Data
+  m_EditorClassIdentifier: 
+  folderDatas_byGuid:
+    keys:
+    - 041bec58baca2f445abd108420619d3a
+    - ce593b7be88b3bc4cbc7707947f6fda4
+    - 9430cc170ab0e744eba77a5f8f61fac4
+    - 794dbbf150b89b843a3f5afc3e0198ab
+    - e833c9cc7200e444d8987f02aeba2949
+    - 5b4960b0882aef442876720931781a81
+    - 678867d39281b4d4f8bb55b46e63fd8b
+    - ff9dec2e35f49df41857465fa057efe0
+    - 393f9cd48acae9b48adeac0bc1ffe11c
+    - 50344b00183704342ac472b39e57926b
+    - caba3e20659558344a1dce25ed83627a
+    - 297d929280f4f6541ba4e95f6bf3ed81
+    - 109ccfb08b9fd4bf5a9d8deee2ace2ed
+    - dd2b9e231b0ec4a9f97e258072ae2b33
+    - f42d0374f4587401395165a2788ee07c
+    - baa6e88cc47804cafb29dc337c1e639b
+    - d454140e53231466b8d485f9ff487b2e
+    values:
+    - iconNameOrGuid: cs Script Icon
+      colorIndex: 4
+      isIconRecursive: 0
+      isColorRecursive: 0
+    - iconNameOrGuid: cs Script Icon
+      colorIndex: 4
+      isIconRecursive: 0
+      isColorRecursive: 0
+    - iconNameOrGuid: cs Script Icon
+      colorIndex: 4
+      isIconRecursive: 0
+      isColorRecursive: 0
+    - iconNameOrGuid: cs Script Icon
+      colorIndex: 4
+      isIconRecursive: 0
+      isColorRecursive: 0
+    - iconNameOrGuid: SceneAsset Icon
+      colorIndex: 1
+      isIconRecursive: 0
+      isColorRecursive: 0
+    - iconNameOrGuid: cs Script Icon
+      colorIndex: 4
+      isIconRecursive: 0
+      isColorRecursive: 0
+    - iconNameOrGuid: Prefab Icon
+      colorIndex: 7
+      isIconRecursive: 0
+      isColorRecursive: 0
+    - iconNameOrGuid: Settings Icon
+      colorIndex: 5
+      isIconRecursive: 0
+      isColorRecursive: 0
+    - iconNameOrGuid: Material Icon
+      colorIndex: 6
+      isIconRecursive: 0
+      isColorRecursive: 0
+    - iconNameOrGuid: RawImage Icon
+      colorIndex: 2
+      isIconRecursive: 0
+      isColorRecursive: 0
+    - iconNameOrGuid: Font Icon
+      colorIndex: 8
+      isIconRecursive: 0
+      isColorRecursive: 0
+    - iconNameOrGuid: CustomCollider2D Icon
+      colorIndex: 3
+      isIconRecursive: 0
+      isColorRecursive: 0
+    - iconNameOrGuid: 
+      colorIndex: 3
+      isIconRecursive: 0
+      isColorRecursive: 0
+    - iconNameOrGuid: 
+      colorIndex: 3
+      isIconRecursive: 0
+      isColorRecursive: 0
+    - iconNameOrGuid: 
+      colorIndex: 3
+      isIconRecursive: 0
+      isColorRecursive: 0
+    - iconNameOrGuid: 
+      colorIndex: 3
+      isIconRecursive: 0
+      isColorRecursive: 0
+    - iconNameOrGuid: 
+      colorIndex: 3
+      isIconRecursive: 0
+      isColorRecursive: 0
+  bookmarks: []
