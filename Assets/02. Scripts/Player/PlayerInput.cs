@@ -14,14 +14,23 @@ public class PlayerInput : MonoBehaviour
     private bool isJump;
     public bool IsJump { get => isJump; }
 
+    private PlayerControl playerControl;
+
     PlayerAction input;
+
+    Coroutine OnInputCoroutine;
+
+    private void OnValidate()
+    {
+        playerControl = GetComponent<PlayerControl>();
+    }
 
     private void OnEnable()
     {
         input = new PlayerAction();
         input.Player.Move.performed += OnMove;
         input.Player.Move.canceled += StopMove;
-        input.Player.Jump.performed += OnJump;
+        input.Player.Jump.started += OnJump;
         input.Player.Jump.canceled += StopJump;
         input.Player.MousePosition.started += OnMousePosition;
         input.Player.MousePosition.canceled += StopMousePosition;
@@ -33,10 +42,10 @@ public class PlayerInput : MonoBehaviour
     {
         input.Player.Move.performed -= OnMove;
         input.Player.Move.canceled -= StopMove;
-        input.Player.Jump.performed -= OnJump;
+        input.Player.Jump.started -= OnJump;
         input.Player.Jump.canceled -= StopJump;
         input.Player.MousePosition.started -= OnMousePosition;
-        input.Player.MousePosition.canceled += StopMousePosition;
+        input.Player.MousePosition.canceled -= StopMousePosition;
 
         input.Disable();
     }
@@ -44,24 +53,57 @@ public class PlayerInput : MonoBehaviour
     private void OnMove(InputAction.CallbackContext context)
     {
         playerMoveDir = context.ReadValue<Vector2>().normalized;
+
+        if(OnInputCoroutine == null)
+        {
+            OnInputCoroutine = StartCoroutine(FixedUpdateOnInput());
+        }
         Debug.Log("움직이나요?");
     }
 
     private void StopMove(InputAction.CallbackContext context)
     {
         playerMoveDir = Vector2.zero;
+        if(OnInputCoroutine != null)
+        {
+            StopCoroutine(OnInputCoroutine);
+            OnInputCoroutine = null;
+        }
+        playerControl.MoveCharacter();
         Debug.Log("멈췄어요?");
     }
 
     private void OnJump(InputAction.CallbackContext context)
     {
         isJump = true;
+        if (OnInputCoroutine == null)
+        {
+            OnInputCoroutine = StartCoroutine(FixedUpdateOnInput());
+        }
         Debug.Log("점프했나요?");
     }
+
+
+    //TODO: 코드 최적화 가능
+    IEnumerator FixedUpdateOnInput()
+    {
+        while (IsJump || playerMoveDir.magnitude > 0f)
+        {
+            playerControl.JumpCharacter();
+            playerControl.MoveCharacter();
+            yield return new WaitForFixedUpdate();
+        }
+    }
+
 
     private void StopJump(InputAction.CallbackContext context)
     {
         isJump = false;
+        if (OnInputCoroutine != null)
+        {
+            StopCoroutine(OnInputCoroutine);
+            OnInputCoroutine = null;
+        }
         Debug.Log("점프그만둬요?");
     }
 

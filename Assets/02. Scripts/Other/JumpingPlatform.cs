@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using VInspector;
 
 public interface IJumpPlatFormInteraction
 {
@@ -9,16 +10,19 @@ public interface IJumpPlatFormInteraction
 
 public class JumpingPlatform : MonoBehaviour
 {
+    [ShowInInspector, ReadOnly]
     private LayerMask _interactionLayer;
     private BoxCollider _boxCollider;
     private Coroutine jumpCoroutine;
     private float _positionY;
-    public float CorrectionFactor = 0.3f;
-    public float jumpForce = 10f;
+    [ShowInInspector]
+    private float CorrectionFactor = 0.3f;
+    [ShowInInspector]
+    private float jumpForce = 10f;
 
     private void OnValidate()
     {
-        _interactionLayer = 1 << LayerMask.NameToLayer("Player");
+        _interactionLayer = ReadonlyData.interactionLayerMask | ReadonlyData.playerLayerMask;
         _boxCollider = GetComponent<BoxCollider>();
         _positionY = transform.position.y + _boxCollider.center.y + (_boxCollider.size.y * 0.5f) - CorrectionFactor;
     }

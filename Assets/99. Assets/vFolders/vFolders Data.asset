@@ -31,6 +31,10 @@ MonoBehaviour:
     - f42d0374f4587401395165a2788ee07c
     - baa6e88cc47804cafb29dc337c1e639b
     - d454140e53231466b8d485f9ff487b2e
+    - b8364cc8daa86494f9590d84d0151bbf
+    - 11f29b938c0e89840a9fd7ff09273b10
+    - 5591cf16418fb1146938d9353e64dd75
+    - 8993b0371f6c9a84ba6a9c66fd6289bf
     values:
     - iconNameOrGuid: cs Script Icon
       colorIndex: 4
@@ -50,54 +54,70 @@ MonoBehaviour:
       isColorRecursive: 0
     - iconNameOrGuid: SceneAsset Icon
       colorIndex: 1
+      isIconRecursive: 1
+      isColorRecursive: 1
+    - iconNameOrGuid: cs Script Icon
+      colorIndex: 4
+      isIconRecursive: 1
+      isColorRecursive: 1
+    - iconNameOrGuid: Prefab Icon
+      colorIndex: 7
+      isIconRecursive: 1
+      isColorRecursive: 1
+    - iconNameOrGuid: Settings Icon
+      colorIndex: 5
+      isIconRecursive: 1
+      isColorRecursive: 1
+    - iconNameOrGuid: Material Icon
+      colorIndex: 6
+      isIconRecursive: 1
+      isColorRecursive: 1
+    - iconNameOrGuid: RawImage Icon
+      colorIndex: 2
+      isIconRecursive: 1
+      isColorRecursive: 1
+    - iconNameOrGuid: Font Icon
+      colorIndex: 8
+      isIconRecursive: 1
+      isColorRecursive: 1
+    - iconNameOrGuid: CustomCollider2D Icon
+      colorIndex: 3
+      isIconRecursive: 1
+      isColorRecursive: 1
+    - iconNameOrGuid: 
+      colorIndex: 3
+      isIconRecursive: 0
+      isColorRecursive: 0
+    - iconNameOrGuid: 
+      colorIndex: 3
+      isIconRecursive: 0
+      isColorRecursive: 0
+    - iconNameOrGuid: 
+      colorIndex: 3
+      isIconRecursive: 0
+      isColorRecursive: 0
+    - iconNameOrGuid: 
+      colorIndex: 3
+      isIconRecursive: 0
+      isColorRecursive: 0
+    - iconNameOrGuid: 
+      colorIndex: 3
       isIconRecursive: 0
       isColorRecursive: 0
     - iconNameOrGuid: cs Script Icon
-      colorIndex: 4
+      colorIndex: 0
       isIconRecursive: 0
       isColorRecursive: 0
-    - iconNameOrGuid: Prefab Icon
-      colorIndex: 7
-      isIconRecursive: 0
-      isColorRecursive: 0
-    - iconNameOrGuid: Settings Icon
-      colorIndex: 5
-      isIconRecursive: 0
-      isColorRecursive: 0
-    - iconNameOrGuid: Material Icon
-      colorIndex: 6
-      isIconRecursive: 0
-      isColorRecursive: 0
-    - iconNameOrGuid: RawImage Icon
-      colorIndex: 2
-      isIconRecursive: 0
-      isColorRecursive: 0
-    - iconNameOrGuid: Font Icon
-      colorIndex: 8
-      isIconRecursive: 0
-      isColorRecursive: 0
-    - iconNameOrGuid: CustomCollider2D Icon
-      colorIndex: 3
+    - iconNameOrGuid: PrefabModel On Icon
+      colorIndex: 10
+      isIconRecursive: 1
+      isColorRecursive: 1
+    - iconNameOrGuid: 
+      colorIndex: 10
       isIconRecursive: 0
       isColorRecursive: 0
     - iconNameOrGuid: 
-      colorIndex: 3
-      isIconRecursive: 0
-      isColorRecursive: 0
-    - iconNameOrGuid: 
-      colorIndex: 3
-      isIconRecursive: 0
-      isColorRecursive: 0
-    - iconNameOrGuid: 
-      colorIndex: 3
-      isIconRecursive: 0
-      isColorRecursive: 0
-    - iconNameOrGuid: 
-      colorIndex: 3
-      isIconRecursive: 0
-      isColorRecursive: 0
-    - iconNameOrGuid: 
-      colorIndex: 3
+      colorIndex: 10
       isIconRecursive: 0
       isColorRecursive: 0
   bookmarks: []

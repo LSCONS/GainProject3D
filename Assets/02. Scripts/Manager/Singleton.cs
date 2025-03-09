@@ -6,15 +6,15 @@ using UnityEngine;
 public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 {
     private static T _instance;
-    public static T Instance 
+    public static T Instance
     {
         get
         {
-            if(_instance == null)
+            if (_instance == null)
             {
                 _instance = FindFirstObjectByType<T>();
-                
-                if(_instance == null)
+
+                if (_instance == null)
                 {
                     _instance = new GameObject(typeof(T).Name).AddComponent<T>();
                 }
@@ -25,7 +25,7 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 
     protected virtual void Awake()
     {
-        if(_instance == null)
+        if (_instance == null)
         {
             _instance = this as T;
             DontDestroyOnLoad(gameObject);

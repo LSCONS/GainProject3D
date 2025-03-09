@@ -27,24 +27,20 @@ public class PlayerControl : MonoBehaviour, IJumpPlatFormInteraction
     private void Awake()
     {
         Cursor.lockState = CursorLockMode.Locked;
-        StartCoroutine(enumerator(5, 5));
     }
 
-    private void FixedUpdate()
-    {
-        Move();
-        Jump();
-    }
+
 
 
     private void LateUpdate()
     {
-        Rotate();
+        RotateCharacter();
     }
 
 
+
     //플레이어가 움직임.
-    private void Move()
+    public void MoveCharacter()
     {
         _rigidbody.velocity =
             transform.right * _playerInput.PlayerMoveDir.x * _playerStatus.Speed +
@@ -54,7 +50,7 @@ public class PlayerControl : MonoBehaviour, IJumpPlatFormInteraction
 
 
     //플레이어가 점프함.
-    private void Jump()
+    public void JumpCharacter()
     {
         if (_playerInput.IsJump && isGround())
         {
@@ -62,8 +58,9 @@ public class PlayerControl : MonoBehaviour, IJumpPlatFormInteraction
         }
     }
 
+
     //플레이어를 회전시킴
-    private void Rotate()
+    private void RotateCharacter()
     {
         _curCameraXRot += _playerInput.MousePosition.y * _playerStatus.Sensitivity;
         _curCameraXRot = Mathf.Clamp(_curCameraXRot, _playerStatus.MinCurXRot, _playerStatus.MaxCurXRot);
@@ -71,8 +68,9 @@ public class PlayerControl : MonoBehaviour, IJumpPlatFormInteraction
         transform.eulerAngles += _playerInput.MousePosition.x * _playerStatus.Sensitivity * Vector3.up;
     }
 
+
     //플레이어가 땅에 닿고 있는지 확인하고 반환하는 메서드
-    private bool isGround()
+    public bool isGround()
     {
         Ray[] ray = new Ray[]
         {
@@ -92,20 +90,8 @@ public class PlayerControl : MonoBehaviour, IJumpPlatFormInteraction
         return false;
     }
 
-    IEnumerator enumerator(int a, int b)
-    {
-        a = 5;
-        b = 5;
-        Debug.Log("스피드 늘려줘요");
-        yield return new WaitForSeconds(5f); //나 1초 끝났어 이제 실행줘
-        Debug.Log("스피드 끝났어요");
-    }
 
-    private void OnDrawGizmos()
-    {
-        Debug.DrawRay(transform.position, Vector2.down * 2f, Color.red);
-    }
-
+    //점프 플랫폼에 닿았을 때 플레이어를 특정 힘으로 밀어주는 메서드
     public void OnJumpPlatform(float jumpForce)
     {
         _rigidbody.AddForce(Vector2.up * jumpForce, ForceMode.Impulse);
