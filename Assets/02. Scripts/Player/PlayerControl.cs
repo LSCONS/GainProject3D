@@ -34,7 +34,7 @@ public class PlayerControl : MonoBehaviour, IJumpPlatFormInteraction
 
     private void LateUpdate()
     {
-        RotateCharacter();
+        if(!(_playerInput.IsInventory)) RotateCharacter();
     }
 
 
@@ -52,7 +52,9 @@ public class PlayerControl : MonoBehaviour, IJumpPlatFormInteraction
     //플레이어가 점프함.
     public void JumpCharacter()
     {
-        if (_playerInput.IsJump && isGround())
+        if (Mathf.Approximately(_rigidbody.velocity.y, 0) &&
+            _playerStatus.IsGround &&
+            _playerStatus.CheckJumpStamina())
         {
             _rigidbody.AddForce(Vector2.up * _playerStatus.JumpForce, ForceMode.Impulse);
         }
@@ -66,28 +68,6 @@ public class PlayerControl : MonoBehaviour, IJumpPlatFormInteraction
         _curCameraXRot = Mathf.Clamp(_curCameraXRot, _playerStatus.MinCurXRot, _playerStatus.MaxCurXRot);
         _camera.transform.localEulerAngles = -_curCameraXRot * Vector3.right;
         transform.eulerAngles += _playerInput.MousePosition.x * _playerStatus.Sensitivity * Vector3.up;
-    }
-
-
-    //플레이어가 땅에 닿고 있는지 확인하고 반환하는 메서드
-    public bool isGround()
-    {
-        Ray[] ray = new Ray[]
-        {
-            new Ray(transform.position + Vector3.forward * 0.3f + Vector3.up * 0.01f, Vector3.down),
-            new Ray(transform.position + Vector3.back * 0.3f+ Vector3.up * 0.01f, Vector3.down),
-            new Ray(transform.position + Vector3.right * 0.3f+ Vector3.up * 0.01f, Vector3.down),
-            new Ray(transform.position + Vector3.left * 0.3f+ Vector3.up * 0.01f, Vector3.down)
-        };
-
-        for (int i = 0; i < ray.Length; i++)
-        {
-            if (Physics.Raycast(ray[i], 0.02f, LayerMask.GetMask("Ground")))
-            {
-                return true;
-            }
-        }
-        return false;
     }
 
 

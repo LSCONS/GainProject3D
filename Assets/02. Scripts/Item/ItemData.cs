@@ -14,6 +14,7 @@ public enum ItemType
 public class ItemData : ScriptableObject
 {
     [Foldout("Info")]
+    public int IDItem;
     public string nameItem;
     public string infoItem;
     public ItemType type;

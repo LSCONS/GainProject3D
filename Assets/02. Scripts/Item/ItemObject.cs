@@ -10,15 +10,12 @@ public interface IInteractalbe
 
 public class ItemObject : MonoBehaviour, IInteractalbe
 {
-    [ShowInInspector, ReadOnly]
-    private ItemData data;
-    private string nameItem;
-    private string infoItem;
+    [ReadOnly]
+    public ItemData data;
 
     private void OnValidate()
     {
         data = Resources.Load<ItemData>($"ItemData/{gameObject.name}");
-
     }
 
     public void OnInteract()

@@ -87,7 +87,8 @@ MonoBehaviour:
     - RawImage Icon
     - Texture2DArray On
     - Prefab Icon
-    - AvatarController.LayerSelected
+    - CustomCollider2D Icon
+    - Animation.Record
     enabled: 1
   - builtinIcons: []
     customIcons: []

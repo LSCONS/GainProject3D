@@ -120,4 +120,8 @@ MonoBehaviour:
       colorIndex: 10
       isIconRecursive: 0
       isColorRecursive: 0
-  bookmarks: []
+  bookmarks:
+  - guid: 9430cc170ab0e744eba77a5f8f61fac4
+  - guid: b8364cc8daa86494f9590d84d0151bbf
+  - guid: 794dbbf150b89b843a3f5afc3e0198ab
+  - guid: 8993b0371f6c9a84ba6a9c66fd6289bf
