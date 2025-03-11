@@ -19,7 +19,7 @@ public class PlayerStatus : MonoBehaviour
 
     private LayerMask _excludeLayerMask;
 
-    //TODO: ÃßÈÄ¿¡ ÇØ´ç º¯¼öµé ÀÌµ¿ ÇÊ¿ä
+    //TODO: ì¶”í›„ì— í•´ë‹¹ ë³€ìˆ˜ë“¤ ì´ë™ í•„ìš” 
     private float sensitivity = 0.1f;
     private float maxCurXRot = 90;
     private float minCurXRot = -90f;
@@ -34,7 +34,7 @@ public class PlayerStatus : MonoBehaviour
     public float CurStamina { get => curStamina; }
     public bool IsGround { get => isGround; }
 
-    //TODO: ÃßÈÄ¿¡ ÇØ´ç º¯¼öµé ÀÌµ¿ ÇÊ¿ä
+    //TODO: ì¶”í›„ì— í•´ë‹¹ ë³€ìˆ˜ë“¤ ì´ë™ í•„ìš” 
     public float Sensitivity { get => sensitivity; }
     public float MaxCurXRot { get => maxCurXRot; }
     public float MinCurXRot { get => minCurXRot; }
@@ -69,7 +69,7 @@ public class PlayerStatus : MonoBehaviour
     }
 
 
-    //Ã¼·ÂÀÇ °ª¿¡ º¯µ¿À» ÁÖ´Â ¸Ş¼­µå
+    //ì²´ë ¥ì˜ ê°’ì— ë³€ë™ì„ ì£¼ëŠ” ë©”ì„œë“œ 
     public void HealthChange(float value)
     {
         curHealth += value;
@@ -78,12 +78,12 @@ public class PlayerStatus : MonoBehaviour
 
         if (curHealth == 0f)
         {
-            //TODO: »ç¸ÁÃ³¸® ÇÊ¿ä
+            //TODO: ì‚¬ë§ì²˜ë¦¬ í•„ìš” 
         }
     }
 
 
-    //½ºÅÂ¹Ì³ªÀÇ °ª¿¡ º¯µ¿À» ÁÖ´Â ¸Ş¼­µå
+    //ìŠ¤íƒœë¯¸ë‚˜ì˜ ê°’ì— ë³€ë™ì„ ì£¼ëŠ” ë©”ì„œë“œ 
     public void StaminaChange(float value)
     {
         curStamina += value;
@@ -92,7 +92,7 @@ public class PlayerStatus : MonoBehaviour
     }
 
 
-    //¿ä±¸ÇÏ´Â ½ºÅÂ¹Ì³ª°¡ »ç¿ë °¡´ÉÇÑÁö È®ÀÎÇÏ°í °¡´ÉÇÏ´Ù¸é true¸¦ ¹İÈ¯ÇÏ¸ç ±ğ´Â ¸Ş¼­µå
+    //ìš”êµ¬í•˜ëŠ” ìŠ¤íƒœë¯¸ë‚˜ê°€ ì‚¬ìš© ê°€ëŠ¥í•œì§€ í™•ì¸í•˜ê³  ê°€ëŠ¥í•˜ë‹¤ë©´ trueë¥¼ ë°˜í™˜í•˜ë©° ê¹ëŠ” ë©”ì„œë“œ 
     public bool CheckAndUseStamina(float value)
     {
         if(curStamina >= value)
@@ -104,7 +104,7 @@ public class PlayerStatus : MonoBehaviour
     }
 
 
-    //Á¡ÇÁ°¡ °¡´ÉÇÑ ½ºÅÂ¹Ì³ªÀÎÁö È®ÀÎÇÏ°í ÁÙÀÌ¸ç bool°ªÀ» ¹İÈ¯ÇÏ´Â ¸Ş¼­µå
+    //ì í”„ê°€ ê°€ëŠ¥í•œ ìŠ¤íƒœë¯¸ë‚˜ì¸ì§€ í™•ì¸í•˜ê³  ì¤„ì´ë©° boolê°’ì„ ë°˜í™˜í•˜ëŠ” ë©”ì„œë“œ 
     public bool CheckJumpStamina()
     {
         if (curStamina >= consumptionJump)
@@ -116,7 +116,7 @@ public class PlayerStatus : MonoBehaviour
     }
 
 
-    //ÇÃ·¹ÀÌ¾î°¡ ¶¥¿¡ ´ê°í ÀÖ´ÂÁö È®ÀÎÇÏ°í ¹İÈ¯ÇÏ´Â ¸Ş¼­µå
+    //í”Œë ˆì´ì–´ê°€ ë•…ì— ë‹¿ê³  ìˆëŠ”ì§€ í™•ì¸í•˜ê³  ë°˜í™˜í•˜ëŠ” ë©”ì„œë“œ 
     public bool CheckIsGround()
     {
         Ray[] ray = new Ray[]
@@ -138,17 +138,17 @@ public class PlayerStatus : MonoBehaviour
     }
 
 
-    //ÇØ´ç ½ºÅÂ¹Ì³ª °ü·Ã ÄÚ·çÆ¾À» ½ÇÇàÇÏ´Â ¸Ş¼­µå
+    //í•´ë‹¹ ìŠ¤íƒœë¯¸ë‚˜ ê´€ë ¨ ì½”ë£¨í‹´ì„ ì‹¤í–‰í•˜ëŠ” ë©”ì„œë“œ 
     public void StartStaminaCoroutine(float value, float time)
     {
         StartCoroutine(StaminaSpeedUp(value, time));
     }
 
 
-    //½ºÅÂ¹Ì³ª°¡ Ã¤¿öÁö´Â ¼Óµµ¸¦ ¿Ã·ÁÁÖ´Â ÄÚ·çÆ¾
+    //ìŠ¤íƒœë¯¸ë‚˜ê°€ ì±„ì›Œì§€ëŠ” ì†ë„ë¥¼ ì˜¬ë ¤ì£¼ëŠ” ì½”ë£¨í‹´
     private IEnumerator StaminaSpeedUp(float value, float time)
     {
-        Debug.Log("¾ÆÀÌÅÛ È¿°ú ½ÃÀÛ");
+        Debug.Log("ì•„ì´í…œ íš¨ê³¼ ì‹œì‘");
         staminaRecoverySpeed += value;
         yield return new WaitForSeconds(time);
         staminaRecoverySpeed -= value;
