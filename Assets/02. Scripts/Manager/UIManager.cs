@@ -23,14 +23,14 @@ public class UIManager : Singleton<UIManager>
     [ShowInInspector, ReadOnly]
     private InventorySlotGrid _inventorySlotGrid;
 
-    private void OnValidate() 
+    private void OnValidate()
     {
         InIt();
     }
 
     private void InIt()
     {
-        if (interactionUIObject == null) interactionUIObject = "InteraionUI".GetComponentNameDFS<Transform>().gameObject;
+        if (interactionUIObject == null) interactionUIObject = "InteractionUI".GetComponentNameDFS<Transform>().gameObject;
         if (inventoryUIObject == null) inventoryUIObject = "InventoryUI".GetComponentNameDFS<Transform>().gameObject;
         if (_interactionUI == null) _interactionUI = Util.FindFirstObjectByTypeDebug<InteractionUI>();
         if (statusUI == null) statusUI = Util.FindFirstObjectByTypeDebug<StatusUI>();
