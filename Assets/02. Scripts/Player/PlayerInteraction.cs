@@ -19,6 +19,7 @@ public class PlayerInteraction : MonoBehaviour
     [ShowInInspector, ReadOnly]
     private PlayerInput _playerInput;
     private ItemObject _itemObject;
+    private float tempime;
 
 
     private void OnValidate()
@@ -44,8 +45,12 @@ public class PlayerInteraction : MonoBehaviour
 
     private void Update()
     {
-        InIt();
-        ShootingLayCastForCamera();
+        tempime += Time.deltaTime;
+        if(tempime >= 0.1 && !(_playerInput.IsInventory))
+        {
+            ShootingLayCastForCamera();
+            tempime = 0;
+        }
     }
 
 
