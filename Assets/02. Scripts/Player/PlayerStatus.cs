@@ -136,4 +136,21 @@ public class PlayerStatus : MonoBehaviour
         }
         return false;
     }
+
+
+    //해당 스태미나 관련 코루틴을 실행하는 메서드
+    public void StartStaminaCoroutine(float value, float time)
+    {
+        StartCoroutine(StaminaSpeedUp(value, time));
+    }
+
+
+    //스태미나가 채워지는 속도를 올려주는 코루틴
+    private IEnumerator StaminaSpeedUp(float value, float time)
+    {
+        Debug.Log("아이템 효과 시작");
+        staminaRecoverySpeed += value;
+        yield return new WaitForSeconds(time);
+        staminaRecoverySpeed -= value;
+    }
 }

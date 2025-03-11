@@ -110,6 +110,7 @@ public class InventorySlot : MonoBehaviour
                 break;
 
             case ItemType.Stamina:
+                UIManager.Instance.playerStatus.StartStaminaCoroutine(_itemObject.data.value, _itemObject.data.duration);
                 break;
         }
         ReduceItem();
