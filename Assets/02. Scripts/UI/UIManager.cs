@@ -1,39 +1,55 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using VInspector;
 
 public class UIManager : Singleton<UIManager>
 {
+    [ShowInInspector, ReadOnly]
+    private InteractionUI _interactionUI;
     [ReadOnly]
     public GameObject interactionUIObject;
     [ReadOnly]
     public GameObject inventoryUIObject;
-    [ShowInInspector, ReadOnly]
-    private InteractionUI _interactionUI;
     [ReadOnly]
     public StatusUI statusUI;
+    [ShowInInspector, ReadOnly]
+    public Button _upButton;
+    [ShowInInspector, ReadOnly]
+    public Button _downButton;
+    [ShowInInspector, ReadOnly]
+    public PlayerStatus playerStatus;
+    [ShowInInspector, ReadOnly]
+    private InventorySlotGrid _inventorySlotGrid;
 
     private void OnValidate()
     {
-        _interactionUI = FindFirstObjectByType<InteractionUI>();
-        if (_interactionUI == null) Debug.LogError("interactionUI is null"); 
+        InIt();
+    }
 
-        interactionUIObject = transform.GetGameObjectSameNameDFS("InteractionUI").gameObject;
-        if (interactionUIObject == null) Debug.LogError("interactionUIObject is null");
+    private void InIt()
+    {
+        if (interactionUIObject == null) interactionUIObject = "InteractionUI".GetComponentNameDFS<Transform>().gameObject;
+        if (inventoryUIObject == null) inventoryUIObject = "InventoryUI".GetComponentNameDFS<Transform>().gameObject;
+        if (_interactionUI == null) _interactionUI = Util.FindFirstObjectByTypeDebug<InteractionUI>();
+        if (statusUI == null) statusUI = Util.FindFirstObjectByTypeDebug<StatusUI>();
+        if (_upButton == null) _upButton = "UpButton".GetComponentNameDFS<Button>();
+        if (_downButton == null) _downButton = "DownButton".GetComponentNameDFS<Button>();
+        if (_inventorySlotGrid == null) _inventorySlotGrid = Util.FindFirstObjectByTypeDebug<InventorySlotGrid>();
+        if (playerStatus == null) playerStatus = Util.FindFirstObjectByTypeDebug<PlayerStatus>();
 
-        inventoryUIObject = transform.GetGameObjectSameNameDFS("InventoryUI").gameObject;
-        if (inventoryUIObject == null) Debug.LogError("inventoryUIObject is null");
-
-        statusUI = FindFirstObjectByType<StatusUI>();
-        if (statusUI == null) Debug.LogError("statusUI is null");
+        _upButton.onClick.RemoveListener(_inventorySlotGrid.UseItem);
+        _upButton.onClick.AddListener(_inventorySlotGrid.UseItem);
     }
 
     protected override void Awake()
     {
         base.Awake();
+        InIt();
         interactionUIObject.SetActive(false);
         inventoryUIObject.SetActive(false);
+        SetAcitveButton(false);
     }
 
 
@@ -52,6 +68,7 @@ public class UIManager : Singleton<UIManager>
     }
 
     
+    //인벤토리를 활성화 및 비활성화하는 메서드
     public void ActiveInventory(bool isActive)
     {
         if (isActive)
@@ -64,5 +81,33 @@ public class UIManager : Singleton<UIManager>
             inventoryUIObject.SetActive(false);
             Cursor.lockState = CursorLockMode.Locked;
         }
+    }
+
+
+    public void SetAcitveButton(bool isActive)
+    {
+        _downButton.gameObject.SetActive(isActive);
+        _upButton.gameObject.SetActive(isActive);
+    }
+
+
+    //특정 아이템을 클릭했을 때 실행할 메서드
+    public void SelectItem()
+    {
+        
+    }
+
+
+    //아이템 사용하기 버튼을 눌렀을 경우 실행할 메서드
+    public void UseItem()
+    {
+
+    }
+
+
+    //아이템 버리기 버튼을 눌렀을 경우 실행할 메서드
+    public void ThrowItem()
+    {
+
     }
 }

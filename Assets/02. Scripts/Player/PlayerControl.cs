@@ -52,7 +52,8 @@ public class PlayerControl : MonoBehaviour, IJumpPlatFormInteraction
     //플레이어가 점프함.
     public void JumpCharacter()
     {
-        if (Mathf.Approximately(_rigidbody.velocity.y, 0) &&
+        if (_playerInput.IsJump &&
+            Mathf.Approximately(_rigidbody.velocity.y, 0) &&
             _playerStatus.IsGround &&
             _playerStatus.CheckJumpStamina())
         {

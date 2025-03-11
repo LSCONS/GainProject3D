@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor.SceneManagement;
 using UnityEngine;
+using VInspector;
 
 public class PlayerStatus : MonoBehaviour
 {
@@ -13,7 +14,10 @@ public class PlayerStatus : MonoBehaviour
     private float maxStamina = 100f;
     private float curStamina = 100f;
     private float maxPositionY;
+    private float staminaRecoverySpeed = 20f;
     private bool isGround = false;
+
+    private LayerMask _excludeLayerMask;
 
     //TODO: 추후에 해당 변수들 이동 필요
     private float sensitivity = 0.1f;
@@ -41,12 +45,11 @@ public class PlayerStatus : MonoBehaviour
     private void OnValidate()
     {
         _playerControl = GetComponent<PlayerControl>();
+        _excludeLayerMask = ~(ReadonlyData.jumpPlatformLayerMask);
     }
 
     private void Update()
     {
-        //TODO: 플레이어의 스태미나가 점차 상승하는 메서드 필요.
-        UIManager.Instance.statusUI.UpdateStaminaAmount(CurStamina / MaxStamina);
         if (CheckIsGround())
         {
             isGround = true;
@@ -56,6 +59,7 @@ public class PlayerStatus : MonoBehaviour
                 HealthChange(-temp * 10f);
             }
             maxPositionY = transform.position.y;
+            StaminaChange(Time.deltaTime * staminaRecoverySpeed);
         }
         else
         {
@@ -65,10 +69,13 @@ public class PlayerStatus : MonoBehaviour
     }
 
 
+    //체력의 값에 변동을 주는 메서드
     public void HealthChange(float value)
     {
         curHealth += value;
         curHealth = Mathf.Clamp(curHealth, 0f, MaxHealth);
+        UIManager.Instance.statusUI.UpdateHealthAmount(CurHealth / MaxHealth);
+
         if (curHealth == 0f)
         {
             //TODO: 사망처리 필요
@@ -76,10 +83,12 @@ public class PlayerStatus : MonoBehaviour
     }
 
 
+    //스태미나의 값에 변동을 주는 메서드
     public void StaminaChange(float value)
     {
         curStamina += value;
         curStamina = Mathf.Clamp(curStamina, 0f, MaxStamina);
+        UIManager.Instance.statusUI.UpdateStaminaAmount(CurStamina / MaxStamina);
     }
 
 
@@ -95,6 +104,7 @@ public class PlayerStatus : MonoBehaviour
     }
 
 
+    //점프가 가능한 스태미나인지 확인하고 줄이며 bool값을 반환하는 메서드
     public bool CheckJumpStamina()
     {
         if (curStamina >= consumptionJump)
@@ -119,7 +129,7 @@ public class PlayerStatus : MonoBehaviour
 
         for (int i = 0; i < ray.Length; i++)
         {
-            if (Physics.Raycast(ray[i], 0.02f, LayerMask.GetMask("Ground")))
+            if (Physics.Raycast(ray[i], 0.02f, _excludeLayerMask))
             {
                 return true;
             }

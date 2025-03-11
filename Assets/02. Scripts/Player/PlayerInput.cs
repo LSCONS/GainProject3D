@@ -14,9 +14,24 @@ public class PlayerInput : MonoBehaviour
     public Vector2 MousePosition { get => _mousePosition; }
 
     private bool _isJump;
-    public bool IsJump { get => _isJump; }
+    public bool IsJump { get => _isJump;
+    }
     private bool _isInventory = false;
     public bool IsInventory { get => _isInventory;}
+
+    // private int ABS { get; set; }
+
+    private int damage;
+    public int criticalDamage 
+    {
+        get { return criticalDamage * 2; }
+    }
+
+    public int nomalDamage
+    {
+        get;
+        private set;
+    }
 
     private PlayerControl _playerControl;
     private PlayerInput _playerInput;
@@ -32,6 +47,7 @@ public class PlayerInput : MonoBehaviour
 
     private void OnEnable()
     {
+        nomalDamage = 5;
         _input = new PlayerAction();
         _input.Player.Move.performed += OnMove;
         _input.Player.Move.canceled += StopMove;
