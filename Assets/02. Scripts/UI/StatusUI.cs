@@ -13,9 +13,22 @@ public class StatusUI : MonoBehaviour
 
     private void OnValidate()
     {
-        _imgHealth = transform.GetGameObjectSameNameDFS("HealthValue").GetComponent<Image>();
-        _imgStamina = transform.GetGameObjectSameNameDFS("StaminaValue").GetComponent<Image>();
+        InIt();
     }
+
+
+    private void InIt()
+    {
+        if (_imgHealth == null) _imgHealth = "HealthValue".GetComponentNameDFS<Image>();
+        if (_imgStamina == null) _imgStamina = "StaminaValue".GetComponentNameDFS<Image>();
+    }
+
+
+    private void Awake()
+    {
+        InIt();
+    }
+
 
     public void UpdateStaminaAmount(float staminaFillAmount)
     {

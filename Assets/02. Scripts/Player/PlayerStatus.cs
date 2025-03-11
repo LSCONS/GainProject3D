@@ -44,8 +44,18 @@ public class PlayerStatus : MonoBehaviour
 
     private void OnValidate()
     {
-        _playerControl = GetComponent<PlayerControl>();
+        InIt();
+    }
+
+    private void InIt()
+    {
         _excludeLayerMask = ~(ReadonlyData.jumpPlatformLayerMask);
+        if (_playerControl == null) _playerControl = transform.GetComponentDebug<PlayerControl>();
+    }
+
+    private void Awake()
+    {
+        InIt();
     }
 
     private void Update()

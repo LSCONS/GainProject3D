@@ -21,11 +21,11 @@ public class InventorySlot : MonoBehaviour
 
     private void OnValidate()
     {
-        _text = transform.TransformFindAndGetComponent<TextMeshProUGUI>("StackCount");
-        _icon = transform.TransformFindAndGetComponent<Image>("Icon");
-        _objectPool = transform.TransformFindAndGetComponent<Transform>("ObjectPool").gameObject;
-        _button = transform.GetComponentDebug<Button>();
-        _inventorySlotGrid = GetComponentInParent<InventorySlotGrid>();
+        if (_text == null) _text = transform.TransformFindAndGetComponent<TextMeshProUGUI>("StackCount");
+        if (_icon == null) _icon = transform.TransformFindAndGetComponent<Image>("Icon");
+        if (_objectPool == null) _objectPool = transform.TransformFindAndGetComponent<Transform>("ObjectPool").gameObject;
+        if (_button == null) _button = transform.GetComponentDebug<Button>();
+        if (_inventorySlotGrid == null) _inventorySlotGrid = GetComponentInParent<InventorySlotGrid>();
     }
 
     private void Awake()
@@ -116,7 +116,7 @@ public class InventorySlot : MonoBehaviour
         ReduceItem();
     }
 
-    private void SelectedSlot() 
+    private void SelectedSlot()
     {
         _inventorySlotGrid.SelectedItemSlot(slotIndex);
     }
@@ -128,7 +128,7 @@ public class InventorySlot : MonoBehaviour
             _itemAmount--;
         }
 
-        if(_itemAmount == 0)
+        if (_itemAmount == 0)
         {
             _itemObject = null;
             UpdateIcon();
