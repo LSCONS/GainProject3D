@@ -52,6 +52,7 @@ public class PlayerInteraction : MonoBehaviour
                 currentObject = _hit.collider.gameObject;
                 _itemObject = currentObject.GetComponentInParent<ItemObject>();
                 if (_itemObject == null) Debug.LogError("itemObject is null");
+                _playerInput.interactionAction -= InteractionHandler;
                 _playerInput.interactionAction += InteractionHandler;
                 UIManager.Instance.UpdateInteractionUI(_itemObject);
             }

@@ -23,12 +23,20 @@ public class JumpingPlatform : MonoBehaviour
 
     private void OnValidate()
     {
-        _interactionLayer = ReadonlyData.playerLayerMask;
-        _boxCollider = GetComponent<BoxCollider>();
+        Init();
     }
+
+
+    private void Init()
+    {
+        _interactionLayer = ReadonlyData.playerLayerMask;
+        if (_boxCollider == null) _boxCollider = transform.GetComponentDebug<BoxCollider>();
+    }
+
 
     private void Awake()
     {
+        Init();
         _positionY = transform.position.y + _boxCollider.center.y + (_boxCollider.size.y * 0.5f) - CorrectionFactor;
     }
 

@@ -14,15 +14,17 @@ public class PlayerInput : MonoBehaviour
     public Vector2 MousePosition { get => _mousePosition; }
 
     private bool _isJump;
-    public bool IsJump { get => _isJump;
+    public bool IsJump
+    {
+        get => _isJump;
     }
     private bool _isInventory = false;
-    public bool IsInventory { get => _isInventory;}
+    public bool IsInventory { get => _isInventory; }
 
     // private int ABS { get; set; }
 
     private int damage;
-    public int criticalDamage 
+    public int criticalDamage
     {
         get { return criticalDamage * 2; }
     }
@@ -41,8 +43,18 @@ public class PlayerInput : MonoBehaviour
 
     private void OnValidate()
     {
-        _playerControl = GetComponent<PlayerControl>();
-        _playerInput = GetComponent<PlayerInput>();
+        InIt();
+    }
+
+    private void InIt()
+    {
+        if (_playerControl == null) _playerControl = transform.GetComponentDebug<PlayerControl>();
+        if (_playerInput == null) _playerInput = transform.GetComponentDebug<PlayerInput>();
+    }
+
+    private void Awake()
+    {
+        InIt();
     }
 
     private void OnEnable()
@@ -81,7 +93,7 @@ public class PlayerInput : MonoBehaviour
     {
         _playerMoveDir = context.ReadValue<Vector2>().normalized;
 
-        if(_onInputCoroutine == null)
+        if (_onInputCoroutine == null)
         {
             _onInputCoroutine = StartCoroutine(FixedUpdateOnInput());
         }
@@ -135,7 +147,7 @@ public class PlayerInput : MonoBehaviour
     //플레이어가 상호작용 키를 입력했을 때 실행할 메서드
     private void OnInteraction(InputAction.CallbackContext context)
     {
-        if(!(IsInventory))interactionAction?.Invoke();
+        if (!(IsInventory)) interactionAction?.Invoke();
     }
 
 
@@ -159,7 +171,7 @@ public class PlayerInput : MonoBehaviour
                 _onInputCoroutine = null;
                 yield break;
             }
-        
+
             _playerControl.JumpCharacter();
             _playerControl.MoveCharacter();
             yield return new WaitForFixedUpdate();

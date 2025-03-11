@@ -6,7 +6,7 @@ using VInspector;
 
 public class UIManager : Singleton<UIManager>
 {
-    [ShowInInspector, ReadOnly]
+    [SerializeField]
     private InteractionUI _interactionUI;
     [ReadOnly]
     public GameObject interactionUIObject;
@@ -84,30 +84,10 @@ public class UIManager : Singleton<UIManager>
     }
 
 
+    //버튼을 활성화/비활성화 해주는 메서드
     public void SetAcitveButton(bool isActive)
     {
         _downButton.gameObject.SetActive(isActive);
         _upButton.gameObject.SetActive(isActive);
-    }
-
-
-    //특정 아이템을 클릭했을 때 실행할 메서드
-    public void SelectItem()
-    {
-        
-    }
-
-
-    //아이템 사용하기 버튼을 눌렀을 경우 실행할 메서드
-    public void UseItem()
-    {
-
-    }
-
-
-    //아이템 버리기 버튼을 눌렀을 경우 실행할 메서드
-    public void ThrowItem()
-    {
-
     }
 }
