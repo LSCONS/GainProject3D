@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using VInspector;
+using static UnityEngine.UI.CanvasScaler;
 
 public class InventorySlot : MonoBehaviour
 {
@@ -21,6 +22,12 @@ public class InventorySlot : MonoBehaviour
 
     private void OnValidate()
     {
+        InIt();
+    }
+
+
+    private void InIt()
+    {
         if (_text == null) _text = transform.TransformFindAndGetComponent<TextMeshProUGUI>("StackCount");
         if (_icon == null) _icon = transform.TransformFindAndGetComponent<Image>("Icon");
         if (_objectPool == null) _objectPool = transform.TransformFindAndGetComponent<Transform>("ObjectPool").gameObject;
@@ -28,8 +35,10 @@ public class InventorySlot : MonoBehaviour
         if (_inventorySlotGrid == null) _inventorySlotGrid = GetComponentInParent<InventorySlotGrid>();
     }
 
+
     private void Awake()
     {
+        InIt();
         UpdateAmountText();
         UpdateIcon();
     }

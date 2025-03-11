@@ -14,8 +14,18 @@ public class InteractionUI : MonoBehaviour
 
     private void OnValidate()
     {
-        _titleText = transform.Find("TitleText").GetComponent<TextMeshProUGUI>();
-        _infoText = transform.Find("InfoText").GetComponent<TextMeshProUGUI>();
+        InIt();
+    }
+
+    private void InIt()
+    {
+        if (_titleText == null) _titleText = transform.TransformFindAndGetComponent<TextMeshProUGUI>("TitleText");
+        if (_infoText == null) _infoText = transform.TransformFindAndGetComponent<TextMeshProUGUI>("InfoText");
+    }
+
+    private void Awake()
+    {
+        InIt();
     }
 
 

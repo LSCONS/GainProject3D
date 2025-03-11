@@ -18,14 +18,20 @@ public class PlayerControl : MonoBehaviour, IJumpPlatFormInteraction
 
     private void OnValidate()
     {
-        _camera = Camera.main;
-        _playerStatus = GetComponent<PlayerStatus>();
-        _playerInput = GetComponent<PlayerInput>() ;
-        _rigidbody = GetComponent<Rigidbody>();
+        InIt();
+    }
+
+    private void InIt()
+    {
+        if (_camera == null) _camera = Camera.main;
+        if (_playerStatus == null) _playerStatus = transform.GetComponentDebug<PlayerStatus>();
+        if (_playerInput == null) _playerInput = transform.GetComponentDebug<PlayerInput>();
+        if (_rigidbody == null) _rigidbody = transform.GetComponentDebug<Rigidbody>();
     }
 
     private void Awake()
     {
+        InIt();
         Cursor.lockState = CursorLockMode.Locked;
     }
 
@@ -34,7 +40,7 @@ public class PlayerControl : MonoBehaviour, IJumpPlatFormInteraction
 
     private void LateUpdate()
     {
-        if(!(_playerInput.IsInventory)) RotateCharacter();
+        if (!(_playerInput.IsInventory)) RotateCharacter();
     }
 
 

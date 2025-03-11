@@ -23,18 +23,28 @@ public class PlayerInteraction : MonoBehaviour
 
     private void OnValidate()
     {
-        _camera = Camera.main;
+        InIt();
+    }
+
+
+    private void InIt()
+    {
         _LayerMask = ReadonlyData.interactionLayerMask;
-        _interactionUI = FindFirstObjectByType<InteractionUI>();
-        if (_interactionUI == null) Debug.LogError("_interactionUI is null");
-        _playerInput = GetComponent<PlayerInput>();
-        if (_playerInput == null) Debug.LogError("_palyerInput is null");
-        _inventorySlotGrid = FindFirstObjectByType<InventorySlotGrid>();
-        if (_inventorySlotGrid == null) Debug.LogError("_inventorySlotGrid is null");
+        if (_camera == null) _camera = Camera.main;
+        if (_interactionUI == null) _interactionUI = Util.FindFirstObjectByTypeDebug<InteractionUI>();
+        if (_playerInput == null) _playerInput = transform.GetComponentDebug<PlayerInput>();
+        if (_inventorySlotGrid == null) _inventorySlotGrid = Util.FindFirstObjectByTypeDebug<InventorySlotGrid>();
+    }
+
+
+    private void Awake()
+    {
+        InIt();
     }
 
     private void Update()
     {
+        InIt();
         ShootingLayCastForCamera();
     }
 
@@ -47,7 +57,7 @@ public class PlayerInteraction : MonoBehaviour
 
         if (Physics.Raycast(_ray, out _hit, _DistanceMax, _LayerMask))
         {
-            if(_hit.collider.gameObject != currentObject)
+            if (_hit.collider.gameObject != currentObject)
             {
                 currentObject = _hit.collider.gameObject;
                 _itemObject = currentObject.GetComponentInParent<ItemObject>();
@@ -59,13 +69,13 @@ public class PlayerInteraction : MonoBehaviour
         }
         else
         {
-            if(_itemObject != null)
+            if (_itemObject != null)
             {
                 _playerInput.interactionAction -= InteractionHandler;
                 _itemObject = null;
             }
 
-            if(currentObject != null)
+            if (currentObject != null)
             {
                 currentObject = null;
                 UIManager.Instance.UpdateInteractionUI(null);

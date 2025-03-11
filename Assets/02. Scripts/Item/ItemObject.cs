@@ -3,12 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using VInspector;
 
-public interface IInteractalbe
-{
-    public void OnInteract();
-}
-
-public class ItemObject : MonoBehaviour, IInteractalbe
+public class ItemObject : MonoBehaviour
 {
     [ReadOnly]
     public ItemData data;
@@ -16,10 +11,5 @@ public class ItemObject : MonoBehaviour, IInteractalbe
     private void OnValidate()
     {
         data = Resources.Load<ItemData>($"ItemData/{gameObject.name}");
-    }
-
-    public void OnInteract()
-    {
-
     }
 }
