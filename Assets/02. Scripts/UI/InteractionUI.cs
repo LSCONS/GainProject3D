@@ -19,7 +19,7 @@ public class InteractionUI : MonoBehaviour
     }
 
 
-    //»óÈ£ÀÛ¿ëÇÏ´Â ¿ÀºêÁ§Æ®¸¦ °¡Áö°í ItemData¸¦ ÃßÃâÇÏ¿© ÅØ½ºÆ®¿¡ Àû¿ëÇÏ´Â ¸Ş¼­µå
+    //ìƒí˜¸ì‘ìš©í•˜ëŠ” ì˜¤ë¸Œì íŠ¸ë¥¼ ê°€ì§€ê³  ItemDataë¥¼ ì¶”ì¶œí•˜ì—¬ í…ìŠ¤íŠ¸ì— ì ìš©í•˜ëŠ” ë©”ì„œë“œ 
     public void OnLoadText(ItemObject itemObject)
     {
         _titleText.text = itemObject.data.nameItem;

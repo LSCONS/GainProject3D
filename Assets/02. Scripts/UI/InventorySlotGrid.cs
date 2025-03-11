@@ -36,7 +36,7 @@ public class InventorySlotGrid : MonoBehaviour
             }
         }
 
-        //TODO: ³ÖÀ» ¼ö ÀÖ´Â ¾ÆÀÌÅÛ Ä­À» Ã£À» ¼ö ¾ø´Â °æ¿ìÀÇ ¸í·É¾î ÇÊ¿ä
+        //TODO: ë„£ì„ ìˆ˜ ìžˆëŠ” ì•„ì´í…œ ì¹¸ì„ ì°¾ì„ ìˆ˜ ì—†ëŠ” ê²½ìš°ì˜ ëª…ë ¹ì–´ í•„ìš” 
     }
 
 

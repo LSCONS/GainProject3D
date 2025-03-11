@@ -76,7 +76,7 @@ public class PlayerInput : MonoBehaviour
     }
 
 
-    //ÇÃ·¹ÀÌ¾îÀÇ ¿òÁ÷ÀÓÀÌ °¨ÁöµÇ¾úÀ» ¶§ ½ÇÇàÇÒ ¸Ş¼­µå
+    //í”Œë ˆì´ì–´ì˜ ì›€ì§ì„ì´ ê°ì§€ë˜ì—ˆì„ ë•Œ ì‹¤í–‰í•  ë©”ì„œë“œ
     private void OnMove(InputAction.CallbackContext context)
     {
         _playerMoveDir = context.ReadValue<Vector2>().normalized;
@@ -85,20 +85,20 @@ public class PlayerInput : MonoBehaviour
         {
             _onInputCoroutine = StartCoroutine(FixedUpdateOnInput());
         }
-        Debug.Log("¿òÁ÷ÀÌ³ª¿ä?");
+        Debug.Log("ì›€ì§ì´ë‚˜ìš”?");
     }
 
 
-    //ÇÃ·¹ÀÌ¾îÀÇ ¿òÁ÷ÀÓÀÌ ¸ØÃèÀ» ¶§ ½ÇÇàÇÒ ¸Ş¼­µå
+    //í”Œë ˆì´ì–´ì˜ ì›€ì§ì„ì´ ë©ˆì·„ì„ ë•Œ ì‹¤í–‰í•  ë©”ì„œë“œ
     private void StopMove(InputAction.CallbackContext context)
     {
         _playerMoveDir = Vector2.zero;
         _playerControl.MoveCharacter();
-        Debug.Log("¸ØÃè¾î¿ä?");
+        Debug.Log("ë©ˆì·„ì–´ìš”?");
     }
 
 
-    //ÇÃ·¹ÀÌ¾î°¡ Á¡ÇÁ Å°¸¦ ÀÔ·ÂÇßÀ» ¶§ ½ÇÇàÇÒ ¸Ş¼­µå
+    //í”Œë ˆì´ì–´ê°€ ì í”„ í‚¤ë¥¼ ì…ë ¥í–ˆì„ ë•Œ ì‹¤í–‰í•  ë©”ì„œë“œ
     private void OnJump(InputAction.CallbackContext context)
     {
         _isJump = true;
@@ -106,48 +106,48 @@ public class PlayerInput : MonoBehaviour
         {
             _onInputCoroutine = StartCoroutine(FixedUpdateOnInput());
         }
-        Debug.Log("Á¡ÇÁÇß³ª¿ä?");
+        Debug.Log("ì í”„í–ˆë‚˜ìš”?");
     }
 
 
-    //ÇÃ·¹ÀÌ¾î°¡ Á¡ÇÁ Å°¸¦ ¶®À» ¶§ ½ÇÇàÇÒ ¸Ş¼­µå
+    //í”Œë ˆì´ì–´ê°€ ì í”„ í‚¤ë¥¼ ë• ì„ ë•Œ ì‹¤í–‰í•  ë©”ì„œë“œ
     private void StopJump(InputAction.CallbackContext context)
     {
         _isJump = false;
-        Debug.Log("Á¡ÇÁ±×¸¸µÖ¿ä?");
+        Debug.Log("ì í”„ê·¸ë§Œë‘¬ìš”?");
     }
 
 
-    //ÇÃ·¹ÀÌ¾î°¡ ¸¶¿ì½º¸¦ ¿òÁ÷¿´À» ¶§ ½ÇÇàÇÒ ¸Ş¼­µå
+    //í”Œë ˆì´ì–´ê°€ ë§ˆìš°ìŠ¤ë¥¼ ì›€ì§ì˜€ì„ ë•Œ ì‹¤í–‰í•  ë©”ì„œë“œ
     private void OnMousePosition(InputAction.CallbackContext context)
     {
         _mousePosition = context.ReadValue<Vector2>();
     }
 
 
-    //ÇÃ·¹ÀÌ¾îÀÇ ¸¶¿ì½º°¡ ¸ØÃèÀ» ¶§ ½ÇÇàÇÒ ¸Ş¼­µå
+    //í”Œë ˆì´ì–´ì˜ ë§ˆìš°ìŠ¤ê°€ ë©ˆì·„ì„ ë•Œ ì‹¤í–‰í•  ë©”ì„œë“œ
     private void StopMousePosition(InputAction.CallbackContext context)
     {
         _mousePosition = Vector2.zero;
     }
 
 
-    //ÇÃ·¹ÀÌ¾î°¡ »óÈ£ÀÛ¿ë Å°¸¦ ÀÔ·ÂÇßÀ» ¶§ ½ÇÇàÇÒ ¸Ş¼­µå
+    //í”Œë ˆì´ì–´ê°€ ìƒí˜¸ì‘ìš© í‚¤ë¥¼ ì…ë ¥í–ˆì„ ë•Œ ì‹¤í–‰í•  ë©”ì„œë“œ
     private void OnInteraction(InputAction.CallbackContext context)
     {
         if(!(IsInventory))interactionAction?.Invoke();
     }
 
 
-    //ÇÃ·¹ÀÌ¾î°¡ ÀÎº¥Åä¸® Å°¸¦ ÀÔ·ÂÇßÀ» ¶§ ½ÇÇàÇÒ ¸Ş¼­µå
+    //í”Œë ˆì´ì–´ê°€ ì¸ë²¤í† ë¦¬ í‚¤ë¥¼ ì…ë ¥í–ˆì„ ë•Œ ì‹¤í–‰í•  ë©”ì„œë“œ
     private void OnInventory(InputAction.CallbackContext context)
     {
         _isInventory = !_isInventory;
         UIManager.Instance.ActiveInventory(_isInventory);
     }
 
-    //ÇÃ·¹ÀÌ¾î°¡ Å°¸¦ ÀÔ·ÂÇßÀ» ¶§ ½ÇÇàÇÒ ÄÚ·çÆ¾
-    //TODO: ÄÚµå ÃÖÀûÈ­ °¡´É
+    //í”Œë ˆì´ì–´ê°€ í‚¤ë¥¼ ì…ë ¥í–ˆì„ ë•Œ ì‹¤í–‰í•  ì½”ë£¨í‹´ 
+    //TODO: ì½”ë“œ ìµœì í™” ê°€ëŠ¥
     IEnumerator FixedUpdateOnInput()
     {
         while (IsJump || _playerMoveDir.magnitude > 0f)

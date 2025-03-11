@@ -39,7 +39,7 @@ public class PlayerInteraction : MonoBehaviour
     }
 
 
-    //Ä«¸Ş¶ó °¡¿îµ¥·Î ·¹ÀÌÄÉ½ºÆ®¸¦ ½÷¼­ »óÈ£ÀÛ¿ë °¡´ÉÇÑ ¿ÀºêÁ§Æ®¸¦ È®ÀÎÇÏ´Â ¸Ş¼­µå
+    //ì¹´ë©”ë¼ ê°€ìš´ë°ë¡œ ë ˆì´ì¼€ìŠ¤íŠ¸ë¥¼ ì´ì„œ ìƒí˜¸ì‘ìš© ê°€ëŠ¥í•œ ì˜¤ë¸Œì íŠ¸ë¥¼ í™•ì¸í•˜ëŠ” ë©”ì„œë“œ 
     private void ShootingLayCastForCamera()
     {
         Ray _ray = _camera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));

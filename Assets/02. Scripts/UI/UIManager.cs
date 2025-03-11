@@ -53,7 +53,7 @@ public class UIManager : Singleton<UIManager>
     }
 
 
-    //»óÈ£ ÀÛ¿ë UI¸¦ ¾÷µ¥ÀÌÆ®ÇÏ°í ºñÈ°¼ºÈ­ ¹× È°¼ºÈ­¸¦ ÇÏ´Â ¸Þ¼­µå
+    //ìƒí˜¸ ìž‘ìš© UIë¥¼ ì—…ë°ì´íŠ¸í•˜ê³  ë¹„í™œì„±í™” ë° í™œì„±í™”ë¥¼ í•˜ëŠ” ë©”ì„œë“œ 
     public void UpdateInteractionUI(ItemObject itemObject)
     {
         if(itemObject != null)
@@ -68,7 +68,7 @@ public class UIManager : Singleton<UIManager>
     }
 
     
-    //ÀÎº¥Åä¸®¸¦ È°¼ºÈ­ ¹× ºñÈ°¼ºÈ­ÇÏ´Â ¸Þ¼­µå
+    //ì¸ë²¤í† ë¦¬ë¥¼ í™œì„±í™” ë° ë¹„í™œì„±í™”í•˜ëŠ” ë©”ì„œë“œ
     public void ActiveInventory(bool isActive)
     {
         if (isActive)
@@ -91,21 +91,21 @@ public class UIManager : Singleton<UIManager>
     }
 
 
-    //Æ¯Á¤ ¾ÆÀÌÅÛÀ» Å¬¸¯ÇßÀ» ¶§ ½ÇÇàÇÒ ¸Þ¼­µå
+    //íŠ¹ì • ì•„ì´í…œì„ í´ë¦­í–ˆì„ ë•Œ ì‹¤í–‰í•  ë©”ì„œë“œ
     public void SelectItem()
     {
         
     }
 
 
-    //¾ÆÀÌÅÛ »ç¿ëÇÏ±â ¹öÆ°À» ´­·¶À» °æ¿ì ½ÇÇàÇÒ ¸Þ¼­µå
+    //ì•„ì´í…œ ì‚¬ìš©í•˜ê¸° ë²„íŠ¼ì„ ëˆŒë €ì„ ê²½ìš° ì‹¤í–‰í•  ë©”ì„œë“œ
     public void UseItem()
     {
 
     }
 
 
-    //¾ÆÀÌÅÛ ¹ö¸®±â ¹öÆ°À» ´­·¶À» °æ¿ì ½ÇÇàÇÒ ¸Þ¼­µå
+    //ì•„ì´í…œ ë²„ë¦¬ê¸° ë²„íŠ¼ì„ ëˆŒë €ì„ ê²½ìš° ì‹¤í–‰í•  ë©”ì„œë“œ
     public void ThrowItem()
     {
 

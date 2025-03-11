@@ -39,7 +39,7 @@ public class PlayerControl : MonoBehaviour, IJumpPlatFormInteraction
 
 
 
-    //ÇÃ·¹ÀÌ¾î°¡ ¿òÁ÷ÀÓ.
+    //í”Œë ˆì´ì–´ê°€ ì›€ì§ì„.
     public void MoveCharacter()
     {
         _rigidbody.velocity =
@@ -49,7 +49,7 @@ public class PlayerControl : MonoBehaviour, IJumpPlatFormInteraction
     }
 
 
-    //ÇÃ·¹ÀÌ¾î°¡ Á¡ÇÁÇÔ.
+    //í”Œë ˆì´ì–´ê°€ ì í”„í•¨.
     public void JumpCharacter()
     {
         if (_playerInput.IsJump &&
@@ -62,7 +62,7 @@ public class PlayerControl : MonoBehaviour, IJumpPlatFormInteraction
     }
 
 
-    //ÇÃ·¹ÀÌ¾î¸¦ È¸Àü½ÃÅ´
+    //í”Œë ˆì´ì–´ë¥¼ íšŒì „ì‹œí‚´
     private void RotateCharacter()
     {
         _curCameraXRot += _playerInput.MousePosition.y * _playerStatus.Sensitivity;
@@ -72,7 +72,7 @@ public class PlayerControl : MonoBehaviour, IJumpPlatFormInteraction
     }
 
 
-    //Á¡ÇÁ ÇÃ·§Æû¿¡ ´ê¾ÒÀ» ¶§ ÇÃ·¹ÀÌ¾î¸¦ Æ¯Á¤ ÈûÀ¸·Î ¹Ğ¾îÁÖ´Â ¸Ş¼­µå
+    //ì í”„ í”Œë«í¼ì— ë‹¿ì•˜ì„ ë•Œ í”Œë ˆì´ì–´ë¥¼ íŠ¹ì • í˜ìœ¼ë¡œ ë°€ì–´ì£¼ëŠ” ë©”ì„œë“œ 
     public void OnJumpPlatform(float jumpForce)
     {
         _rigidbody.AddForce(Vector2.up * jumpForce, ForceMode.Impulse);

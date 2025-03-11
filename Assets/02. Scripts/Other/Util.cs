@@ -6,11 +6,11 @@ using UnityEngine;
 public static class Util
 {
     /// <summary>
-    /// ÇØ´ç ¿ÀºêÁ§Æ®ÀÇ ¸ðµç ÀÚ½ÄµéÀ» DFS ¹æ½ÄÀ¸·Î Àç±ÍÇÏ¸ç °°Àº ÀÌ¸§ÀÇ ¿ÀºêÁ§Æ®¸¦ ¹ÝÈ¯ÇÏ´Â ¸Þ¼­µå
+    /// í•´ë‹¹ ì˜¤ë¸Œì íŠ¸ì˜ ëª¨ë“  ìžì‹ë“¤ì„ DFS ë°©ì‹ìœ¼ë¡œ ìž¬ê·€í•˜ë©° ê°™ì€ ì´ë¦„ì˜ ì˜¤ë¸Œì íŠ¸ë¥¼ ë°˜í™˜í•˜ëŠ” ë©”ì„œë“œ
     /// </summary>
-    /// <param name="parent">±âÁØÀ» ÀâÀ» ºÎ¸ð ¿ÀºêÁ§Æ®</param>
-    /// <param name="name">Ã£À» ÀÌ¸§</param>
-    /// <returns>Ã£¾Ò´Ù¸é ÇØ´ç ¿ÀºêÁ§Æ®¸¦, ½ÇÆÐÇÏ¸é null¹ÝÈ¯</returns>
+    /// <param name="parent">ê¸°ì¤€ì„ ìž¡ì„ ë¶€ëª¨ ì˜¤ë¸Œì íŠ¸</param>
+    /// <param name="name">ì°¾ì„ ì´ë¦„</param>
+    /// <returns>ì°¾ì•˜ë‹¤ë©´ í•´ë‹¹ ì˜¤ë¸Œì íŠ¸ë¥¼, ì‹¤íŒ¨í•˜ë©´ nullë°˜í™˜</returns>
     public static Transform GetGameObjectSameNameDFS(this Transform parent, string name)
     {
         if (parent.name == name) return parent;
@@ -26,13 +26,13 @@ public static class Util
 
 
     /// <summary>
-    /// ÇØ´ç ÀÌ¸§ÀÇ ¿ÀºêÁ§Æ®¸¦ Ã£°í ÄÄÆ÷³ÍÆ®¸¦ ¹ÝÈ¯ÇÏ´Â ¸Þ¼­µå
+    /// í•´ë‹¹ ì´ë¦„ì˜ ì˜¤ë¸Œì íŠ¸ë¥¼ ì°¾ê³  ì»´í¬ë„ŒíŠ¸ë¥¼ ë°˜í™˜í•˜ëŠ” ë©”ì„œë“œ
     /// </summary>
-    /// <typeparam name="T">Ã£À» ÄÄÆ÷³ÍÆ®ÀÇ ÀÌ¸§</typeparam>
-    /// <param name="name">Ã£À» ¿ÀºêÁ§Æ®ÀÇ ÀÌ¸§</param>
-    /// <param name="isDebug">DebugÀÇ ½ÇÇà À¯¹«, ±âº»°ªÀº true</param>
-    /// <param name="SearchDisable">ºñÈ°¼ºÈ­ ¿ÀºêÁ§Æ®¸¦ Ã£À» Áö¿¡ ´ëÇÑ À¯¹«, ±âº»°ªÀº true</param>
-    /// <returns>ÄÄÆ÷³ÍÆ®¸¦ Ã£À¸¸é ¹ÝÈ¯, ¸øÃ£À¸¸é nullÀÌ´Ù</returns>
+    /// <typeparam name="T">ì°¾ì„ ì»´í¬ë„ŒíŠ¸ì˜ ì´ë¦„</typeparam>
+    /// <param name="name">ì°¾ì„ ì˜¤ë¸Œì íŠ¸ì˜ ì´ë¦„</param>
+    /// <param name="isDebug">Debugì˜ ì‹¤í–‰ ìœ ë¬´, ê¸°ë³¸ê°’ì€ true</param>
+    /// <param name="SearchDisable">ë¹„í™œì„±í™” ì˜¤ë¸Œì íŠ¸ë¥¼ ì°¾ì„ ì§€ì— ëŒ€í•œ ìœ ë¬´, ê¸°ë³¸ê°’ì€ true</param>
+    /// <returns>ì»´í¬ë„ŒíŠ¸ë¥¼ ì°¾ìœ¼ë©´ ë°˜í™˜, ëª»ì°¾ìœ¼ë©´ nullì´ë‹¤</returns>
     public static T GetComponentNameDFS<T>(this string name, bool isDebug = true, bool SearchDisable = true) where T : Component
     {
         Transform findTransform = GameObject.Find(name)?.transform;
@@ -49,7 +49,7 @@ public static class Util
 
 
     /// <summary>
-    /// FindFirstObjectByType¿Í ¶È°°Áö¸¸ ÀÚµ¿À¸·Î µð¹ö±ëÀ» Ãâ·ÂÇØÁØ´Ù.
+    /// FindFirstObjectByTypeì™€ ë˜‘ê°™ì§€ë§Œ ìžë™ìœ¼ë¡œ ë””ë²„ê¹…ì„ ì¶œë ¥í•´ì¤€ë‹¤.
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <param name="isDebug"></param>
@@ -63,13 +63,13 @@ public static class Util
 
 
     /// <summary>
-    /// Æ¯Á¤ Æ®·£½ºÆû ¹ØÀÇ ¿ÀºêÁ§Æ® Áß ¿øÇÏ´Â ÀÌ¸§ÀÇ ¿ÀºêÁ§Æ®¿¡¼­ ÄÄÆ÷³ÍÆ®¸¦ Ã£¾Æ ¹ÝÈ¯ÇÏ´Â ¸Þ¼­µå
+    /// íŠ¹ì • íŠ¸ëžœìŠ¤í¼ ë°‘ì˜ ì˜¤ë¸Œì íŠ¸ ì¤‘ ì›í•˜ëŠ” ì´ë¦„ì˜ ì˜¤ë¸Œì íŠ¸ì—ì„œ ì»´í¬ë„ŒíŠ¸ë¥¼ ì°¾ì•„ ë°˜í™˜í•˜ëŠ” ë©”ì„œë“œ
     /// </summary>
-    /// <typeparam name="T">Ã£°í ½ÍÀº ÄÄÆ÷³ÍÆ®</typeparam>
-    /// <param name="parent">Ã£±â ½ÃÀÛÇÒ ºÎ¸ð ¿ÀºêÁ§Æ®</param>
-    /// <param name="name">ºÎ¸ð ¿ÀºêÁ§Æ®¿¡¼­ Ã£À» ÀÌ¸§</param>
-    /// <param name="isDebug">µð¹ö±ë À¯¹«, ±âº»°ªÀº Ãâ·Â</param>
-    /// <param name="SearchDisable">ºñÈ°¼ºÈ­ ¿ÀºêÁ§Æ® Å½»ö ¿©ºÎ, ±âº»°ªÀº Å½»ö</param>
+    /// <typeparam name="T">ì°¾ê³  ì‹¶ì€ ì»´í¬ë„ŒíŠ¸</typeparam>
+    /// <param name="parent">ì°¾ê¸° ì‹œìž‘í•  ë¶€ëª¨ ì˜¤ë¸Œì íŠ¸</param>
+    /// <param name="name">ë¶€ëª¨ ì˜¤ë¸Œì íŠ¸ì—ì„œ ì°¾ì„ ì´ë¦„</param>
+    /// <param name="isDebug">ë””ë²„ê¹… ìœ ë¬´, ê¸°ë³¸ê°’ì€ ì¶œë ¥</param>
+    /// <param name="SearchDisable">ë¹„í™œì„±í™” ì˜¤ë¸Œì íŠ¸ íƒìƒ‰ ì—¬ë¶€, ê¸°ë³¸ê°’ì€ íƒìƒ‰</param>
     /// <returns></returns>
     public static T TransformFindAndGetComponent<T>(this Transform parent, string name, bool isDebug = true, bool SearchDisable = true) where T : Component
     {
@@ -87,7 +87,7 @@ public static class Util
 
 
     /// <summary>
-    /// ±âÁ¸ GetComponent¿¡¼­ Debug¸¸ Ãß°¡ÇÑ ¸Þ¼­µå
+    /// ê¸°ì¡´ GetComponentì—ì„œ Debugë§Œ ì¶”ê°€í•œ ë©”ì„œë“œ 
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <param name="parent"></param>

@@ -100,7 +100,7 @@ public class InventorySlot : MonoBehaviour
     }
 
 
-    //아이템을 사용할 때 실행할 메서드  
+    //아이템을 사용할 때 실행할 메서드   
     public void UseItem()
     {
         switch (_itemObject.data.type)

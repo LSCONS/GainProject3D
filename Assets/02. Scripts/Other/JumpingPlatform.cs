@@ -33,10 +33,10 @@ public class JumpingPlatform : MonoBehaviour
     }
 
 
-    //Enter°¡ ¾Æ´Ñ Stay¸¦ »ç¿ëÇÑ ÀÌÀ¯
-    //ºÎµúÈ÷´Â collisionÀÇ À§Ä¡°¡ Á¡ÇÁ´ëÀÇ ÁÂÇ©°ªº¸´Ù À§¶ó°í ÆÇ´ÜµÈ °æ¿ì Á¡ÇÁ¸¦ ½ÃÅ´.
-    //µû¶ó¼­ ÇØ´ç Á¡ÇÁ´ëÀÇ ¿·¸éÀ» ºÎµúÈ÷¸é¼­ ExitÀ» ¹ÞÁö ¸øÇÏ°í Á¡ÇÁ´ë¸¦ ¿Ã¶ó¿Â °æ¿ì
-    //ºÎµúÈù ÇÑ ¹ø¸¸ È£ÃâµÇ´Â Enter¿¡¼­´Â Á¦´ë·Î ÀÛµ¿ÇÏÁö ¾ÊÀ» °¡´É¼ºÀÌ ¿ì·ÁµÇ±â ¶§¹®¿¡ Stay·Î ÀÛ¼ºÇÔ.
+    //Enterê°€ ì•„ë‹Œ Stayë¥¼ ì‚¬ìš©í•œ ì´ìœ 
+    //ë¶€ë”ªížˆëŠ” collisionì˜ ìœ„ì¹˜ê°€ ì í”„ëŒ€ì˜ ì¢Œí‘¯ê°’ë³´ë‹¤ ìœ„ë¼ê³  íŒë‹¨ëœ ê²½ìš° ì í”„ë¥¼ ì‹œí‚´.
+    //ë”°ë¼ì„œ í•´ë‹¹ ì í”„ëŒ€ì˜ ì˜†ë©´ì„ ë¶€ë”ªížˆë©´ì„œ Exitì„ ë°›ì§€ ëª»í•˜ê³  ì í”„ëŒ€ë¥¼ ì˜¬ë¼ì˜¨ ê²½ìš°
+    //ë¶€ë”ªížŒ í•œ ë²ˆë§Œ í˜¸ì¶œë˜ëŠ” Enterì—ì„œëŠ” ì œëŒ€ë¡œ ìž‘ë™í•˜ì§€ ì•Šì„ ê°€ëŠ¥ì„±ì´ ìš°ë ¤ë˜ê¸° ë•Œë¬¸ì— Stayë¡œ ìž‘ì„±í•¨.
     private void OnCollisionStay(Collision collision)
     {
         if(_interactionLayer == (_interactionLayer | 1 << collision.gameObject.layer) &&
@@ -52,7 +52,7 @@ public class JumpingPlatform : MonoBehaviour
 
 
 
-    //Ãæµ¹ÀÇ Ã³¸®¸¦ Stay¿¡¼­ ÇÏ°í ÀÖ±â ¶§¹®¿¡ Á¡ÇÁ Ã³¸®¸¦ ÇÏ´Â ¸Þ¼­µå°¡ ¿©·¯ ¹ø È£ÃâµÇ´Â ¿ì·Á°¡ ÀÖ¾î ÄÚ·çÆ¾À¸·Î Ã³¸®.
+    //ì¶©ëŒì˜ ì²˜ë¦¬ë¥¼ Stayì—ì„œ í•˜ê³  ìžˆê¸° ë•Œë¬¸ì— ì í”„ ì²˜ë¦¬ë¥¼ í•˜ëŠ” ë©”ì„œë“œê°€ ì—¬ëŸ¬ ë²ˆ í˜¸ì¶œë˜ëŠ” ìš°ë ¤ê°€ ìžˆì–´ ì½”ë£¨í‹´ìœ¼ë¡œ ì²˜ë¦¬. 
     private IEnumerator jumpCoolTime(PlayerControl playerControl)
     {
         playerControl.OnJumpPlatform(jumpForce);
