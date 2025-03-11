@@ -5,6 +5,7 @@ using UnityEngine;
 
 public static class Util
 {
+    private static readonly System.Random rand = new System.Random();
     /// <summary>
     /// 해당 오브젝트의 모든 자식들을 DFS 방식으로 재귀하며 같은 이름의 오브젝트를 반환하는 메서드
     /// </summary>
@@ -98,5 +99,22 @@ public static class Util
         T tempT = parent.GetComponent<T>();
         if (tempT == null && isDebug) Debug.LogError($"{typeof(T)} is null");
         return tempT;
+    }
+
+
+    /// <summary>
+    /// 리스트를 무작위로 섞는 메서드
+    /// </summary>
+    /// <typeparam name="T">리스트 내부에 넣을 요소</typeparam>
+    /// <param name="list">섞을 리스트</param>
+    public static void ShuffleList<T>(this List<T> list)
+    {
+        int n = list.Count;
+        while (n > 1)
+        {
+            n--;
+            int k = rand.Next(n + 1);
+            (list[n], list[k]) = (list[k], list[n]);
+        }
     }
 }
