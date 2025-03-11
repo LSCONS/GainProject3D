@@ -135,13 +135,13 @@ public class InventorySlot : MonoBehaviour
         if (_itemObject.data.canStack)
         {
             _itemAmount--;
+            UpdateAmountText();
         }
 
         if (_itemAmount == 0)
         {
             _itemObject = null;
             UpdateIcon();
-            UpdateAmountText();
             _button.onClick.RemoveListener(SelectedSlot);
         }
     }

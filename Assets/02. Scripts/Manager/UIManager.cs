@@ -38,15 +38,14 @@ public class UIManager : Singleton<UIManager>
         if (_downButton == null) _downButton = "DownButton".GetComponentNameDFS<Button>();
         if (_inventorySlotGrid == null) _inventorySlotGrid = Util.FindFirstObjectByTypeDebug<InventorySlotGrid>();
         if (playerStatus == null) playerStatus = Util.FindFirstObjectByTypeDebug<PlayerStatus>();
-
-        _upButton.onClick.RemoveListener(_inventorySlotGrid.UseItem);
-        _upButton.onClick.AddListener(_inventorySlotGrid.UseItem);
     }
 
     protected override void Awake()
     {
         base.Awake();
         InIt();
+        _upButton.onClick.RemoveListener(_inventorySlotGrid.UseItem);
+        _upButton.onClick.AddListener(_inventorySlotGrid.UseItem);
         interactionUIObject.SetActive(false);
         inventoryUIObject.SetActive(false);
         SetAcitveButton(false);

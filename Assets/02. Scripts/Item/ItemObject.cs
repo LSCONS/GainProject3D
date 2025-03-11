@@ -10,6 +10,16 @@ public class ItemObject : MonoBehaviour
 
     private void OnValidate()
     {
-        data = Resources.Load<ItemData>($"ItemData/{gameObject.name}");
+        InIt();
+    }
+
+    private void InIt()
+    {
+        if (data == null) data = Resources.Load<ItemData>($"ItemData/{gameObject.name}");
+    }
+
+    private void Awake()
+    {
+        InIt();
     }
 }
