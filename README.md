@@ -9,3 +9,7 @@
 
  플레이어가 높은 곳에서 떨어지면 데미지를 입게 만들었습니다.
 
+
+
+https://github.com/user-attachments/assets/05e97a04-066e-4bc7-be0f-cecedfacfba1
+
