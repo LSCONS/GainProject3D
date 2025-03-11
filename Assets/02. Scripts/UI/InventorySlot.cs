@@ -35,7 +35,7 @@ public class InventorySlot : MonoBehaviour
     }
 
 
-    //ÇØ´ç ¾ÆÀÌÅÛÀÌ µé¾î°¥ ¼ö ÀÖ´Â ¾ÆÀÌÅÛÄ­ÀÌ ÀÖ´ÂÁö È®ÀÎÇÏ°í Áı¾î³Ö´Â ¸Ş¼­µå
+    //í•´ë‹¹ ì•„ì´í…œì´ ë“¤ì–´ê°ˆ ìˆ˜ ìˆëŠ” ì•„ì´í…œì¹¸ì´ ìˆëŠ”ì§€ í™•ì¸í•˜ê³  ì§‘ì–´ë„£ëŠ” ë©”ì„œë“œ
     public bool CheckInputItem(ItemObject inputItemObject)
     {
         if (_itemObject == null ||
@@ -50,7 +50,7 @@ public class InventorySlot : MonoBehaviour
     }
 
 
-    //ÇØ´ç ¾ÆÀÌÅÛÀ» ÇØ´ç Ä­¿¡ Áı¾î³Ö´Â ¸Ş¼­µå
+    //í•´ë‹¹ ì•„ì´í…œì„ í•´ë‹¹ ì¹¸ì— ì§‘ì–´ë„£ëŠ” ë©”ì„œë“œ
     private void OnInputItem(ItemObject inputItemObject)
     {
         if (_itemObject == null)
@@ -71,7 +71,7 @@ public class InventorySlot : MonoBehaviour
     }
 
 
-    //¾ÆÀÌÅÛÀÇ ÅØ½ºÆ®¸¦ ÃÊ±âÈ­ÇÏ´Â ¸Ş¼­µå
+    //ì•„ì´í…œì˜ í…ìŠ¤íŠ¸ë¥¼ ì´ˆê¸°í™”í•˜ëŠ” ë©”ì„œë“œ
     private void UpdateAmountText()
     {
         if (_itemAmount == 0)
@@ -86,7 +86,7 @@ public class InventorySlot : MonoBehaviour
     }
 
 
-    //¾ÆÀÌÅÛÀÇ ¾ÆÀÌÄÜÀ» ÃÊ±âÈ­ÇÏ´Â ¸Ş¼­µå
+    //ì•„ì´í…œì˜ ì•„ì´ì½˜ì„ ì´ˆê¸°í™”í•˜ëŠ” ë©”ì„œë“œ
     private void UpdateIcon()
     {
         if (_itemObject == null)
@@ -100,7 +100,7 @@ public class InventorySlot : MonoBehaviour
     }
 
 
-    //¾ÆÀÌÅÛÀ» »ç¿ëÇÒ ¶§ ½ÇÇàÇÒ ¸Ş¼­µå
+    //ì•„ì´í…œì„ ì‚¬ìš©í•  ë•Œ ì‹¤í–‰í•  ë©”ì„œë“œ  
     public void UseItem()
     {
         switch (_itemObject.data.type)
@@ -116,7 +116,7 @@ public class InventorySlot : MonoBehaviour
         ReduceItem();
     }
 
-    private void SelectedSlot()
+    private void SelectedSlot() 
     {
         _inventorySlotGrid.SelectedItemSlot(slotIndex);
     }
