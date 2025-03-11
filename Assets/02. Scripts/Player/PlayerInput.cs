@@ -97,7 +97,6 @@ public class PlayerInput : MonoBehaviour
         {
             _onInputCoroutine = StartCoroutine(FixedUpdateOnInput());
         }
-        Debug.Log("움직이나요?");
     }
 
 
@@ -106,7 +105,6 @@ public class PlayerInput : MonoBehaviour
     {
         _playerMoveDir = Vector2.zero;
         _playerControl.MoveCharacter();
-        Debug.Log("멈췄어요?");
     }
 
 
@@ -118,7 +116,6 @@ public class PlayerInput : MonoBehaviour
         {
             _onInputCoroutine = StartCoroutine(FixedUpdateOnInput());
         }
-        Debug.Log("점프했나요?");
     }
 
 
@@ -126,7 +123,6 @@ public class PlayerInput : MonoBehaviour
     private void StopJump(InputAction.CallbackContext context)
     {
         _isJump = false;
-        Debug.Log("점프그만둬요?");
     }
 
 

@@ -13,7 +13,7 @@ public class InventorySlot : MonoBehaviour
     [ShowInInspector, ReadOnly]
     private Image _icon;
     private TextMeshProUGUI _text;
-    private ItemObject _itemObject;
+    public ItemObject _itemObject;
     private int _itemAmount = 0;
     private GameObject _objectPool;
     private Button _button;
@@ -125,11 +125,15 @@ public class InventorySlot : MonoBehaviour
         ReduceItem();
     }
 
+
+    //아이템 슬롯을 선택할 때 실행할 메서드
     private void SelectedSlot()
     {
         _inventorySlotGrid.SelectedItemSlot(slotIndex);
     }
 
+
+    //아이템을 제거할 때 실행할 메서드
     public void ReduceItem()
     {
         if (_itemObject.data.canStack)

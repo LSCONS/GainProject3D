@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using VInspector;
 
@@ -8,6 +9,8 @@ public class InventorySlotGrid : MonoBehaviour
     [ShowInInspector, ReadOnly]
     private InventorySlot[] inventorySlots;
     public int selectItemSlotIndex = -1;
+    private TextMeshProUGUI titleText;
+    private TextMeshProUGUI infoText;
 
     private void OnValidate()
     {
@@ -16,6 +19,8 @@ public class InventorySlotGrid : MonoBehaviour
 
     private void InIt()
     {
+        titleText = "ItemInfoUI_TitleText".GetComponentNameDFS<TextMeshProUGUI>();
+        infoText = "ItemInfoUI_InfoText".GetComponentNameDFS<TextMeshProUGUI>();
         if (inventorySlots == null)
         {
             inventorySlots = GetComponentsInChildren<InventorySlot>();
@@ -35,6 +40,8 @@ public class InventorySlotGrid : MonoBehaviour
     {
         selectItemSlotIndex = -1;
         UIManager.Instance.SetAcitveButton(false);
+        titleText.gameObject.SetActive(false);
+        infoText.gameObject.SetActive(false);
     }
 
 
@@ -60,6 +67,10 @@ public class InventorySlotGrid : MonoBehaviour
     {
         UIManager.Instance.SetAcitveButton(true);
         selectItemSlotIndex = index;
+        titleText.text = inventorySlots[selectItemSlotIndex]._itemObject.data.nameItem;
+        infoText.text = inventorySlots[selectItemSlotIndex]._itemObject.data.infoItem;
+        titleText.gameObject.SetActive(true);
+        infoText.gameObject.SetActive(true);
     }
 
 
@@ -69,6 +80,11 @@ public class InventorySlotGrid : MonoBehaviour
         if(selectItemSlotIndex != -1)
         {
             inventorySlots[selectItemSlotIndex].UseItem();
+            if (inventorySlots[selectItemSlotIndex]._itemObject == null)
+            {
+                titleText.text = "";
+                infoText.text = "";
+            }
         }
     }
 

@@ -71,9 +71,6 @@ public class PlayerControl : MonoBehaviour, IJumpPlatFormInteraction
     //플레이어를 회전시킴
     private void RotateCharacter()
     {
-        _curCameraXRot += _playerInput.MousePosition.y * _playerStatus.Sensitivity;
-        _curCameraXRot = Mathf.Clamp(_curCameraXRot, _playerStatus.MinCurXRot, _playerStatus.MaxCurXRot);
-        _camera.transform.localEulerAngles = -_curCameraXRot * Vector3.right;
         transform.eulerAngles += _playerInput.MousePosition.x * _playerStatus.Sensitivity * Vector3.up;
     }
 
