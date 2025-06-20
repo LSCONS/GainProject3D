@@ -1,4 +1,5 @@
-key,EN, KO, JA
+key,EN,KO,JA
+None,[Not Found Text],[Not Found Text],[Not Found Text]
 Menu_Start,Start,시작,	スタート
 Menu_Options,Options,옵션,	オプション
 Menu_Exit,Exit,종료,	終了
