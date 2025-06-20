@@ -2,8 +2,7 @@
   "project_info": {
     "project_number": "1092187298486",
     "project_id": "temptextproject",
-    "storage_bucket": "temptextproject.firebasestorage.app",
-    "firebase_url": "https://temptextproject.firebaseio.com"
+    "storage_bucket": "temptextproject.firebasestorage.app"
   },
   "client": [
     {

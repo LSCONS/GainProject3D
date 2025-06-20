@@ -14,7 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_GroupName: Default Local Group
   m_GUID: f43699c51ab526f40abe1fc5d202a512
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: bd356a04e3fad2948bda4644b1aadbd1
+    m_Address: UIPopupSelect
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 3ffb68ce90b0878418bf93a30fe29ac4, type: 2}
   m_SchemaSet:

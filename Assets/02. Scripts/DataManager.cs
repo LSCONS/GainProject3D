@@ -3,15 +3,14 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
-public class DataManager : Singleton<DataManager>
+public class DataManager
 {
-    protected override void Awake()
+    public UIPopupSelect UIPopupSelect { get; private set; }
+
+    public async void Awake()
     {
-        base.Awake();
-
+        UIPopupSelect = await LoadData<UIPopupSelect>("UIPopupSelect");
     }
-
-
 
     private async Task<T> LoadData<T>(string adress)
     {
@@ -25,7 +24,7 @@ public class DataManager : Singleton<DataManager>
         }
         else
         {
-            Debug.LogError($"¾îµå·¹¼­ºí ·Îµù ½ÇÆÐ: {temp.OperationException?.Message}");
+            Debug.LogError($"ì–´ë“œë ˆì„œë¸” ë¡œë”© ì‹¤íŒ¨: {temp.OperationException?.Message}");
         }
         return data;
     }
