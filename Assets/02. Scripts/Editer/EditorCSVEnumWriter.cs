@@ -1,6 +1,6 @@
+#if UNITY_EDITOR
 using System.Collections.Generic;
 using System.IO;
-using System.Security.Cryptography;
 using System.Text;
 using UnityEditor;
 using UnityEngine;
@@ -12,6 +12,10 @@ public class EditorCSVEnumWriter : EditorWindow
     private static readonly string ELanguagePath = "Assets/02. Scripts/Enum";
     private static readonly string ELanguageName = "ELanguage.cs";
 
+
+    /// <summary>
+    /// CSV의 데이터를 기준으로 새로운 Enum.cs들을 제작
+    /// </summary>
     [MenuItem("Tools/CSV Importer/LanguageText")]
     private static void Start()
     {
@@ -20,12 +24,16 @@ public class EditorCSVEnumWriter : EditorWindow
         WriteETextInfo(lines);
     }
 
-    private static void WriteELanguage(string[] lines)
+
+    /// <summary>
+    /// CSV파일을 읽고 ELanguage.cs를 자동 생성해주는 메서드
+    /// </summary>
+    private static void WriteELanguage(string[] lines) 
     {
         string[] headers = lines[0].Split(',');
         if (headers.Length < 2)
         {
-            Debug.LogError("����� ������ �����մϴ�.");
+            Debug.LogError("헤더의 개수가 부족합니다.");
             return;
         }
 
@@ -36,7 +44,10 @@ public class EditorCSVEnumWriter : EditorWindow
         }
 
         StringBuilder sb = new StringBuilder();
-        sb.AppendLine("//EditorCSVEnumWriter.cs���� �ڵ� ����");
+        sb.AppendLine("//EditorCSVEnumWriter.cs에서 자동 생성");
+        sb.AppendLine("/// <summary>");
+        sb.AppendLine("/// 언어를 선택할 enum");
+        sb.AppendLine("/// <summary>");
         sb.AppendLine("public enum ELanguage");
         sb.AppendLine("{");
         for (int i = 0; i < ListLanguage.Count; i++)
@@ -52,6 +63,9 @@ public class EditorCSVEnumWriter : EditorWindow
     }
 
 
+    /// <summary>
+    /// CSV파일을 읽고 ETextInfo.cs를 자동 생성해주는 메서드
+    /// </summary>
     private static void WriteETextInfo(string[] lines)
     {
         List<string> ListTextInfo = new List<string>();
@@ -65,7 +79,10 @@ public class EditorCSVEnumWriter : EditorWindow
         }
 
         StringBuilder sb = new StringBuilder();
-        sb.AppendLine("//EditorCSVEnumWriter���� �ڵ� ����");
+        sb.AppendLine("//EditorCSVEnumWriter에서 자동 생성");
+        sb.AppendLine("/// <summary>");
+        sb.AppendLine("/// Text의 정보들을 담을 enum");
+        sb.AppendLine("/// <summary>");
         sb.AppendLine("public enum ETextInfo");
         sb.AppendLine("{");
         for(int i = 0;i < ListTextInfo.Count; i++)
@@ -80,3 +97,4 @@ public class EditorCSVEnumWriter : EditorWindow
         File.WriteAllText($"{ETextInfoPath}/{ETextInfoName}", sb.ToString(), System.Text.Encoding.UTF8);
     }
 }
+#endif
