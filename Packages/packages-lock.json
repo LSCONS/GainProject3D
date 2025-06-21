@@ -236,6 +236,13 @@
       },
       "url": "https://packages.unity.com"
     },
+    "trismegistus.unity.smartformat": {
+      "version": "https://github.com/Hermesiss/unity-smartformat.git?path=/Packages/trismegistus.unity.smartformat",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "d7a8b3885ed6f02105dcfba15185ae2c0dadd3de"
+    },
     "com.unity.modules.accessibility": {
       "version": "1.0.0",
       "depth": 0,

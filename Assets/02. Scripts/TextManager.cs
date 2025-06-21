@@ -4,7 +4,7 @@ using UnityEngine;
 public class TextManager
 {
     private Dictionary<ETextInfo, string> DictETextToString = new(); //텍스트 정보를 저장할 Dictionary
-    private Dictionary<string, string> DictStrToStr = new(); //초기화 인자로 넣을 Dictionary
+    private Dictionary<ETextStrKey, string> DictStrToStr = new(); //초기화 인자로 넣을 Dictionary
 
     public void Awake()
     {
@@ -18,7 +18,7 @@ public class TextManager
     /// </summary>
     /// <param name="key">매개변수 텍스트의 key값</param>
     /// <param name="value">매개변수 텍스트의 value값</param>
-    public void AddDictStrToStr(string key, string value)
+    public void AddDictStrToStr(ETextStrKey key, string value)
     {
         DictStrToStr[key] = value;
     }
@@ -29,7 +29,7 @@ public class TextManager
     /// </summary>
     /// <param name="key">출력 받을 텍스트의 stringKey</param>
     /// <returns>반환 받을 텍스트의 stringValue</returns>
-    public string ReturnDictStrToStr(string key)
+    public string ReturnDictStrToStr(ETextStrKey key)
     {
         if(DictStrToStr.TryGetValue(key, out string value))
         {
