@@ -3,13 +3,42 @@ using UnityEngine;
 
 public class TextManager
 {
-    public Dictionary<ETextInfo, string> DictETextToString = new(); //텍스트 정보를 저장할 Dictionary
-    public Dictionary<ETextInfo, string[]> DictETextToArrayStr = new(); //초기화 인자로 넣을 Dictionary
+    private Dictionary<ETextInfo, string> DictETextToString = new(); //텍스트 정보를 저장할 Dictionary
+    private Dictionary<string, string> DictStrToStr = new(); //초기화 인자로 넣을 Dictionary
 
     public void Awake()
     {
         int languageIndex = PlayerPrefs.GetInt(ReadonlyData.LanguagePrefs, (int)ELanguage.English);
         ManagerHub.Instance.UIManager.ChangeLanguage((ELanguage)languageIndex);
+    }
+
+
+    /// <summary>
+    /// Dictionary에 매개변수 텍스트를 추가할 메서드
+    /// </summary>
+    /// <param name="key">매개변수 텍스트의 key값</param>
+    /// <param name="value">매개변수 텍스트의 value값</param>
+    public void AddDictStrToStr(string key, string value)
+    {
+        DictStrToStr[key] = value;
+    }
+
+
+    /// <summary>
+    /// 출력받을 텍스트 stringKey를 받아 stringValue 반환하는 메서드
+    /// </summary>
+    /// <param name="key">출력 받을 텍스트의 stringKey</param>
+    /// <returns>반환 받을 텍스트의 stringValue</returns>
+    public string ReturnDictStrToStr(string key)
+    {
+        if(DictStrToStr.TryGetValue(key, out string value))
+        {
+            return value;
+        }
+        else
+        {
+            return "[stringKey Not Found]";
+        }
     }
 
 
@@ -21,8 +50,36 @@ public class TextManager
         get
         {
             if (DictETextToString.Count == 0) return "Not Found";
-            
             return DictETextToString[eTextInfo];
+        }
+    }
+
+
+    /// <summary>
+    /// Dictionary에 텍스트를 추가하는 메서드
+    /// </summary>
+    /// <param name="eTextInfo">추가할 텍스트 enum</param>
+    /// <param name="text">추가할 텍스트 string</param>
+    public void AddDictETextToString(ETextInfo eTextInfo, string text)
+    {
+        DictETextToString[eTextInfo] = text;
+    }
+
+
+    /// <summary>
+    /// 출력 받을 텍스트 enum을 받아 string을 반환하는 메서드
+    /// </summary>
+    /// <param name="eTextInfo">출력할 텍스트 enum</param>
+    /// <returns>반환받을 텍스트 string</returns>
+    public string ReturnDictTextToString(ETextInfo eTextInfo)
+    {
+        if(DictETextToString.TryGetValue(eTextInfo, out string text))
+        {
+            return text;
+        }
+        else
+        {
+            return "[ETextInfo Not Found]";
         }
     }
 

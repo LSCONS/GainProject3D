@@ -6,7 +6,7 @@ Menu_Exit,Exit,종료,	終了
 Popup_Title,Title,제목,	タイトル
 Popup_Description,Description,설명,	説明
 Popup_LanguageChanger_Title,Language Change,언어 변경,言語変更
-Popup_LanguageChanger_Description,Would you like to change the language to {0}?,설정 언어를 {0}로 변경하시겠습니까?,言語を {0} に変更しますか？
+Popup_LanguageChanger_Description,Would you like to change the language to {Language}?,설정 언어를 {Language}로 변경하시겠습니까?,言語を {Language} に変更しますか？
 Btn_Changer_EN,Set to English,영어로 설정,英語に設定
 Btn_Changer_KO,Set to Korean,한국어로 설정,韓国語に設定
 Btn_Changer_JP,Set to Japanese,일본어로 설정,日本語に設定
