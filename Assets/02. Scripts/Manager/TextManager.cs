@@ -45,17 +45,6 @@ public class TextManager
 
 
     /// <summary>
-    /// 출력받을 텍스트 stringKey를 받아 stringValue 반환하는 메서드
-    /// </summary>
-    /// <param name="key">출력 받을 텍스트의 stringKey</param>
-    /// <returns>반환 받을 텍스트의 stringValue</returns>
-    public Dictionary<string, object> ReturnDictStrToStr()
-    {
-        return DictTextStrKeyToObj;
-    }
-
-
-    /// <summary>
     /// Dictionary에 텍스트를 추가하는 메서드
     /// </summary>
     /// <param name="eTextInfo">추가할 텍스트 enum</param>
