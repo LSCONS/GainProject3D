@@ -4,15 +4,13 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-public class UIPopupSelect : UIPopup, ITextChanger
+public class UIPopupSelect : UIPopup
 {
     [field: SerializeField] private Button BtnYes { get; set; }    //확인 버튼
     [field: SerializeField] private Button BtnNo { get; set; }     //취소 버튼
     [field: SerializeField] private TextMeshProUGUI TextTitle { get; set; }    //타이틀 텍스트
     [field: SerializeField] private TextMeshProUGUI TextDescription { get; set; }      //설명 텍스트
     private Vector3 closeScaleVector = Vector3.zero;        //팝업 창이 닫칠 때 적용할 스케일 벡터
-    private ETextInfo ETextInfoTitle = ETextInfo.None;          //타이틀 텍스트 enum
-    private ETextInfo ETextInfoDescription = ETextInfo.None;    //설명 텍스트 enum
 
     /// <summary>
     /// 팝업 창을 초기화하며 열어주는 메서드
@@ -20,14 +18,13 @@ public class UIPopupSelect : UIPopup, ITextChanger
     /// <param name="yesAction">확인 버튼을 눌렀을 때 실행할 메서드</param>
     /// <param name="noAction">취소 버튼을 눌렀을 때 실행할 메서드</param>
     /// <param name="closeScaleVec">팝업창이 닫칠 때 적용할 스케일 벡터</param>
-    public void Init(UnityAction yesAction, UnityAction noAction, ETextInfo ETitle, ETextInfo EDescription, Vector3? closeScaleVec = null)
+    public void Init(UnityAction yesAction, UnityAction noAction, string Title, string Description, Vector3? closeScaleVec = null)
     {
         closeScaleVector = closeScaleVec ?? Vector3.zero;
-        ETextInfoTitle = ETitle;
-        ETextInfoDescription = EDescription;
+        TextTitle.text = Title;
+        TextDescription.text = Description;
         RemoveAllBtnEvent();
         AddBtnEvent(yesAction, noAction);
-        InitText();
         UIOpen();
     }
 
@@ -51,16 +48,6 @@ public class UIPopupSelect : UIPopup, ITextChanger
         Sequence temp = DOTween.Sequence();
         temp.Append(transform.DOScale(closeScaleVector, 0.3f));
         temp.AppendCallback(() => gameObject.SetActive(false));
-    }
-
-
-    /// <summary>
-    /// 등록된 Text를 노출 및 새로고침 해주는 메서드
-    /// </summary>
-    public void InitText()
-    {
-        TextTitle.text = ManagerHub.Instance.TextManager[ETextInfoTitle];
-        TextDescription.text = ManagerHub.Instance.TextManager[ETextInfoDescription];
     }
 
 

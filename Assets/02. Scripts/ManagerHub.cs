@@ -20,7 +20,12 @@ public class ManagerHub : Singleton<ManagerHub>
     {
         if(Input.GetKeyDown(KeyCode.Q))
         {
-            UIManager.InitUIPopupSelect(null, null, ETextInfo.Popup_Title, ETextInfo.Popup_Description, Vector3.up);
+            UIManager.InitUIPopupSelect
+                (null,
+                null,
+                ManagerHub.Instance.TextManager[ETextInfo.Popup_Title],
+                ManagerHub.Instance.TextManager[ETextInfo.Popup_Description],
+                Vector3.up);
         }
     }
 }
