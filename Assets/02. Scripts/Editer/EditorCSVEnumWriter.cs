@@ -73,9 +73,12 @@ public class EditorCSVEnumWriter : EditorWindow
         {
             string[] cols = lines[i].Split(',');
             if (cols.Length == 0) continue;
-            string key = cols[0].Trim();
+            StringBuilder lineSB = new StringBuilder();
+            lineSB.Append(cols[0].Trim());
+            lineSB.Append(",\t//");
+            lineSB.Append(cols[1].Trim());
 
-            ListTextInfo.Add(key);
+            ListTextInfo.Add(lineSB.ToString());
         }
 
         StringBuilder sb = new StringBuilder();
@@ -87,9 +90,7 @@ public class EditorCSVEnumWriter : EditorWindow
         sb.AppendLine("{");
         for(int i = 0;i < ListTextInfo.Count; i++)
         {
-            sb.Append($"    {ListTextInfo[i]}");
-            if (i < ListTextInfo.Count - 1) sb.AppendLine(",");
-            else sb.AppendLine();
+            sb.AppendLine($"    {ListTextInfo[i]}");
         }
         sb.AppendLine("}");
 

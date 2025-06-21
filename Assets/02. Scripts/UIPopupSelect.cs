@@ -4,12 +4,12 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-public class UIPopupSelect : UIPopup
+public class UIPopupSelect : UIPopup, ITextChanger
 {
-    [field : SerializeField] private Button BtnYes { get; set; }    //확인 버튼
-    [field : SerializeField] private Button BtnNo { get; set; }     //취소 버튼
-    [field : SerializeField] private TextMeshProUGUI TextTitle { get; set; }    //타이틀 텍스트
-    [field:  SerializeField] private TextMeshProUGUI TextDescription { get; set; }      //설명 텍스트
+    [field: SerializeField] private Button BtnYes { get; set; }    //확인 버튼
+    [field: SerializeField] private Button BtnNo { get; set; }     //취소 버튼
+    [field: SerializeField] private TextMeshProUGUI TextTitle { get; set; }    //타이틀 텍스트
+    [field: SerializeField] private TextMeshProUGUI TextDescription { get; set; }      //설명 텍스트
     private Vector3 closeScaleVector = Vector3.zero;        //팝업 창이 닫칠 때 적용할 스케일 벡터
     private ETextInfo ETextInfoTitle = ETextInfo.None;          //타이틀 텍스트 enum
     private ETextInfo ETextInfoDescription = ETextInfo.None;    //설명 텍스트 enum
@@ -37,8 +37,9 @@ public class UIPopupSelect : UIPopup
     /// </summary>
     public override void UIOpen()
     {
+        transform.localScale = closeScaleVector;
         gameObject.SetActive(true);
-        transform.DOScale(Vector3.one, 1f);
+        transform.DOScale(Vector3.one, 0.3f);
     }
 
 
@@ -47,8 +48,8 @@ public class UIPopupSelect : UIPopup
     /// </summary>
     public override void UIClose()
     {
-        Sequence temp = null;
-        temp.Append(transform.DOScale(closeScaleVector, 1f));
+        Sequence temp = DOTween.Sequence();
+        temp.Append(transform.DOScale(closeScaleVector, 0.3f));
         temp.AppendCallback(() => gameObject.SetActive(false));
     }
 
@@ -56,9 +57,8 @@ public class UIPopupSelect : UIPopup
     /// <summary>
     /// 등록된 Text를 노출 및 새로고침 해주는 메서드
     /// </summary>
-    public override void InitText()
+    public void InitText()
     {
-        base.InitText();
         TextTitle.text = ManagerHub.Instance.TextManager[ETextInfoTitle];
         TextDescription.text = ManagerHub.Instance.TextManager[ETextInfoDescription];
     }
@@ -71,9 +71,9 @@ public class UIPopupSelect : UIPopup
     /// <param name="noAction">취소 버튼을 눌렀을 때 실행할 메서드</param>
     private void AddBtnEvent(UnityAction yesAction, UnityAction noAction)
     {
-        BtnYes.onClick.AddListener(yesAction);
+        if (yesAction != null) BtnYes.onClick.AddListener(yesAction);
         BtnYes.onClick.AddListener(UIClose);
-        BtnNo.onClick.AddListener(noAction);
+        if (noAction != null) BtnNo.onClick.AddListener(noAction);
         BtnNo.onClick.AddListener(UIClose);
     }
 

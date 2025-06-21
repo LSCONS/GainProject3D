@@ -7,9 +7,10 @@ public class DataManager
 {
     public UIPopupSelect UIPopupSelect { get; private set; }
 
-    public async void Awake()
+    public async Task Awake()
     {
         UIPopupSelect = await LoadData<UIPopupSelect>("UIPopupSelect");
+        return;
     }
 
     private async Task<T> LoadData<T>(string adress)

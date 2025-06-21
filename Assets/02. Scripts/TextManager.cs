@@ -4,11 +4,12 @@ using UnityEngine;
 public class TextManager
 {
     public Dictionary<ETextInfo, string> DictETextToString = new(); //텍스트 정보를 저장할 Dictionary
+    public Dictionary<ETextInfo, string[]> DictETextToArrayStr = new(); //초기화 인자로 넣을 Dictionary
 
     public void Awake()
     {
-        int languageIndex = PlayerPrefs.GetInt(ReadonlyData.LanguagePrefs, (int)ELanguage.EN);
-        InitDictTextToString((ELanguage)languageIndex);
+        int languageIndex = PlayerPrefs.GetInt(ReadonlyData.LanguagePrefs, (int)ELanguage.English);
+        ManagerHub.Instance.UIManager.ChangeLanguage((ELanguage)languageIndex);
     }
 
 
@@ -19,6 +20,8 @@ public class TextManager
     {
         get
         {
+            if (DictETextToString.Count == 0) return "Not Found";
+            
             return DictETextToString[eTextInfo];
         }
     }

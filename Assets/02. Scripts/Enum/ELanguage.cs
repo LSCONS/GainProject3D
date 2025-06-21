@@ -4,7 +4,7 @@
 /// <summary>
 public enum ELanguage
 {
-    EN,
-    KO,
-    JA
+    English,
+    Korean,
+    Japan
 }

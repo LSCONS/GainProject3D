@@ -5,14 +5,19 @@ using UnityEngine;
 
 public class CSVLoader
 {
-    private static readonly string csvFilePath = "Assets/05. Data/Firestore/localization.csv";
+    private static readonly string csvFilePath = "Assets/05. Datas/Firestore/localization.csv";
 
     /// <summary>
     /// CSV파일의 모든 줄을 반환해주는 메서드.
     /// </summary>
     public static string[] LoadCSV()
     {
+#if UNITY_EDITOR
         string[] lines = File.ReadAllLines(csvFilePath);
+#else
+        string fullPath = Path.Combine(Application.dataPath, csvFilePath);
+        string[] lines = File.ReadAllLines(fullPath);
+#endif
         if (lines.Length < 2) Debug.LogError("Not Found OR Null is CSV");
         return lines;
     }

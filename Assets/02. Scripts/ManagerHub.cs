@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class ManagerHub : Singleton<ManagerHub>
@@ -6,11 +7,20 @@ public class ManagerHub : Singleton<ManagerHub>
     public TextManager TextManager { get; private set; } = new TextManager();
     public DataManager DataManager { get; private set; } = new DataManager();
 
-    protected override void Awake()
+    protected override async void Awake()
     {
         base.Awake();
-        DataManager.Awake();
+        await DataManager.Awake();
         UIManager.Awake();
         TextManager.Awake();
+    }
+
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Q))
+        {
+            UIManager.InitUIPopupSelect(null, null, ETextInfo.Popup_Title, ETextInfo.Popup_Description, Vector3.up);
+        }
     }
 }
