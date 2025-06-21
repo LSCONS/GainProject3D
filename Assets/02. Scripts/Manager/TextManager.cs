@@ -28,7 +28,7 @@ public class TextManager
             }
             else
             {
-                return "Not Found";
+                return "[Not Found]";
             }
         }
     }
