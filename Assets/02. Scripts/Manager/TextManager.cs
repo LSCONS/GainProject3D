@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using Trismegistus.SmartFormat;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class TextManager

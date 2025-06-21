@@ -13,23 +13,23 @@ public class EditorFirestoreUploader : MonoBehaviour
     [MenuItem("FireBase/Upload CSV to Firestore")]
     private static async void Upload()
     {
-        Debug.Log("½ÇÇà ½ÃÀÛ");
+        Debug.Log("ì‹¤í–‰ ì‹œì‘");
         var dep = await FirebaseApp.CheckAndFixDependenciesAsync();
         if (dep != DependencyStatus.Available)
         {
-            Debug.LogError("ÆÄÀÌ¾îº£ÀÌ½º Á¾¼Ó¼º ¿À·ù");
+            Debug.LogError("íŒŒì´ì–´ë² ì´ìŠ¤ ì¢…ì†ì„± ì˜¤ë¥˜");
             return;
         }
-        Debug.Log("·Îµå ¿Ï·á");
+        Debug.Log("ë¡œë“œ ì™„ë£Œ");
         var db = FirebaseFirestore.DefaultInstance;
-        await UploadCSV(db);      // UploadCSV´Â Task ¹İÈ¯
-        Debug.Log("½ÇÇà ³¡");
+        await UploadCSV(db);      // UploadCSVëŠ” Task ë°˜í™˜
+        Debug.Log("ì‹¤í–‰ ë");
     }
 
 
     private static async Task UploadCSV(FirebaseFirestore db)
     {
-        Debug.Log("¾÷·Îµå ½ÃÀÛ");
+        Debug.Log("ì—…ë¡œë“œ ì‹œì‘");
         string csvPath = $"Assets/05. Data/Firestore/{CollectionName}.csv";
         string[] lines = File.ReadAllLines(csvPath);
         if (lines.Length == 0) Debug.LogError("Not Found csv");
@@ -48,12 +48,12 @@ public class EditorFirestoreUploader : MonoBehaviour
                 data[headers[j]] = cols[j];
             }
 
-            Debug.Log("½ÃÀÛ");
+            Debug.Log("ì‹œì‘");
             await db.Collection(CollectionName).Document(docID).SetAsync(data);
-            Debug.Log("Á¾·á");
+            Debug.Log("ì¢…ë£Œ");
         }
 
-        Debug.Log("CSV ¾÷·Îµå ¿Ï·á");
+        Debug.Log("CSV ì—…ë¡œë“œ ì™„ë£Œ");
     }
 }
 #endif
