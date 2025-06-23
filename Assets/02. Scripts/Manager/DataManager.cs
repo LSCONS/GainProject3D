@@ -1,32 +1,23 @@
-using System.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
-using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class DataManager
 {
-    public UIPopupSelect UIPopupSelect { get; private set; }
-
-    public async Task Awake()
+    public ELanguage NowLanguage
     {
-        UIPopupSelect = await LoadData<UIPopupSelect>("UIPopupSelect");
-        return;
+        get => (ELanguage)PlayerPrefs.GetInt(ReadonlyData.LanguagePrefs, (int)ELanguage.English);
     }
 
-    private async Task<T> LoadData<T>(string adress)
+
+    /// <summary>
+    /// 옵션에서 언어 설정을 새롭게 저장했을 때 실행할 메서드
+    /// </summary>
+    /// <param name="eLanguage">바꿀 언어의 enum</param>
+    public void SetNowLanguage(ELanguage eLanguage)
     {
-        T data = default;
-        var temp = Addressables.LoadAssetAsync<GameObject>(adress);
-        await temp.Task;
-        if(temp.Status == AsyncOperationStatus.Succeeded)
+        if(NowLanguage != eLanguage)
         {
-            //if(typeof(T) != typeof(GameObject))
-            data = temp.Result.GetComponent<T>();
+            PlayerPrefs.SetInt(ReadonlyData.LanguagePrefs, (int)eLanguage);
+            ManagerHub.Instance.UIManager.ChangeLanguage(eLanguage);
         }
-        else
-        {
-            Debug.LogError($"어드레서블 로딩 실패: {temp.OperationException?.Message}");
-        }
-        return data;
     }
 }

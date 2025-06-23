@@ -10,7 +10,6 @@ public class UIPopupSelect : UIPopup
     [field: SerializeField] private Button BtnNo { get; set; }     //취소 버튼
     [field: SerializeField] private TextMeshProUGUI TextTitle { get; set; }    //타이틀 텍스트
     [field: SerializeField] private TextMeshProUGUI TextDescription { get; set; }      //설명 텍스트
-    private Vector3 closeScaleVector = Vector3.zero;        //팝업 창이 닫칠 때 적용할 스케일 벡터
 
     /// <summary>
     /// 팝업 창을 초기화하며 열어주는 메서드
@@ -34,9 +33,7 @@ public class UIPopupSelect : UIPopup
     /// </summary>
     public override void UIOpen()
     {
-        transform.localScale = closeScaleVector;
-        gameObject.SetActive(true);
-        transform.DOScale(Vector3.one, 0.3f);
+        base.UIOpen();
     }
 
 
@@ -45,9 +42,7 @@ public class UIPopupSelect : UIPopup
     /// </summary>
     public override void UIClose()
     {
-        Sequence temp = DOTween.Sequence();
-        temp.Append(transform.DOScale(closeScaleVector, 0.3f));
-        temp.AppendCallback(() => gameObject.SetActive(false));
+        base.UIClose();
     }
 
 

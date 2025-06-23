@@ -12,7 +12,7 @@ public enum ETextInfo
     Popup_Description,	//Description
     Popup_LanguageChanger_Title,	//Language Change
     Popup_LanguageChanger_Description,	//Would you like to change the language to {Language}?
-    Btn_Changer_EN,	//Set to English
-    Btn_Changer_KO,	//Set to Korean
-    Btn_Changer_JP,	//Set to Japanese
+    Text_Setting,	//Setting
+    Text_Aplly,	//Apply
+    Text_Cancel,	//Cancel
 }
