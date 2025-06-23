@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-public class UIPopupSelect : UIPopup
+public class UIPopupSelect : UIPopup, IBlockerCanCloseUIPopup
 {
     [field: SerializeField] private Button BtnYes { get; set; }    //확인 버튼
     [field: SerializeField] private Button BtnNo { get; set; }     //취소 버튼
@@ -67,5 +67,14 @@ public class UIPopupSelect : UIPopup
     {
         BtnYes.onClick.RemoveAllListeners();
         BtnNo.onClick.RemoveAllListeners();
+    }
+
+
+    /// <summary>
+    /// 가림막을 눌러 해당 창을 닫을 수 있도록 설정.
+    /// </summary>
+    public void BlockerClose()
+    {
+        BtnNo.onClick?.Invoke();
     }
 }

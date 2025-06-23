@@ -2,39 +2,58 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class UIManager
 {
     public Canvas UIPopupCanvas { get; private set; }
     public Canvas UIPermanentCanvas { get; private set; }
     public Transform UIPopupBlocker { get; private set; }
-    public Dictionary<EUISibling, UIBase> DictEUIToUIBase { get; private set; } = new();
-    public Dictionary<Type, UIBase> DictUIBaseToT { get; private set; } = new();
+    public Dictionary<EUISibling, UIBase> DictEUIToUIBase { get; private set; } = new(); //TOOD: 임시 UIBase 딕셔너리
+    public Dictionary<Type, UIBase> DictUIBaseToT { get; private set; } = new();        //새로 생성한 UI들을 <Type, UIBase>형태로 캐스팅
+    public List<UIBase> ListUIPopup { get; private set; } = new();
     private List<ITextChanger> ListTextChanger { get; set; } = new();
-    private int openUIPopupCount = 0;
+    private Button btnBlocker;
+    private int BlockerIndex => UIPopupBlocker.GetSiblingIndex();
 
     public void Awake()
     {
         UIPopupCanvas       = GameObject.Find("UIPopupCanvas").GetComponent<Canvas>();
         UIPermanentCanvas   = GameObject.Find("UIPermanentCanvas").GetComponent<Canvas>();
         UIPopupBlocker      = UIPopupCanvas.transform.GetChild(0);
+        btnBlocker          = UIPopupBlocker.GetComponent<Button>();
         Init();
     }
 
 
+    /// <summary>
+    /// 처음 생성될 때 실행할 초기화 메서드
+    /// </summary>
     public void Init()
     {
         CreateUIPrefabs<UIOptionPanel>(ManagerHub.Instance.ResourceManager.UIOptionPanel);
         CreateUIPrefabs<UIOptionOpen>(ManagerHub.Instance.ResourceManager.UIOptionOpen);
         CreateUIPrefabs<UIPopupSelect>(ManagerHub.Instance.ResourceManager.UIPopupSelect);
-        foreach(UIBase uIBase in DictUIBaseToT.Values)
-        {
-            uIBase.Init();
-        }
+        foreach(UIBase uIBase in DictUIBaseToT.Values) uIBase.Init();
         CheckIsUiPopupOpen();
+        btnBlocker.onClick.AddListener(() =>
+        {
+            int listCount = ListUIPopup.Count;
+            if (listCount == 0) return;
+            int blockerIndex = BlockerIndex;
+            UIBase uiBase = ListUIPopup[listCount - 1];
+            if(uiBase is IBlockerCanCloseUIPopup interfaceClose)
+            {
+                interfaceClose.BlockerClose();
+            }
+        });
     }
 
 
+    /// <summary>
+    /// UIPopup창을 열 때 자식 오브젝트의 정렬을 다시 해주는 메서드
+    /// </summary>
+    /// <param name="trUIPopup">Open할 UIPopup</param>
     public void SetSiblingOpenUIPopup(Transform trUIPopup)
     {
         UIPopupBlocker.SetAsLastSibling();
@@ -42,9 +61,13 @@ public class UIManager
     }
 
 
+    /// <summary>
+    /// UIPopup창을 닫을 때 자식 오브젝트의 정렬을 다시 해주는 메서드
+    /// </summary>
+    /// <param name="trUIPopup">Close할 UIPopup</param>
     public void SetSiblingCloseUIPopup(Transform trUIPopup)
     {
-        int blockerIndex = UIPopupBlocker.GetSiblingIndex();
+        int blockerIndex = BlockerIndex;
         if(blockerIndex > 0) UIPopupBlocker.SetSiblingIndex(blockerIndex - 1);
         trUIPopup.SetAsFirstSibling();
     }
@@ -102,9 +125,9 @@ public class UIManager
     /// <summary>
     /// 열려있는 UIPopup의 개수를 올리는 메서드
     /// </summary>
-    public void AddUIPopupCount()
+    public void AddListUIPopup(UIBase uiBase)
     {
-        openUIPopupCount++;
+        ListUIPopup.Add(uiBase);
         CheckIsUiPopupOpen();
     }
 
@@ -112,9 +135,9 @@ public class UIManager
     /// <summary>
     /// 열려있는 UIPopup의 개수를 내리는 메서드
     /// </summary>
-    public void RemoveUIPopupCount()
+    public void RemoveQueueUIPopup(UIBase uiBase)
     {
-        openUIPopupCount--;
+        ListUIPopup.Remove(uiBase);
         CheckIsUiPopupOpen();
     }
 
@@ -124,7 +147,7 @@ public class UIManager
     /// </summary>
     public void CheckIsUiPopupOpen()
     {
-        bool isActive = (openUIPopupCount > 0) ? true : false;
+        bool isActive = (ListUIPopup.Count > 0) ? true : false;
         if(UIPopupCanvas.gameObject.activeSelf != isActive)
         {
             UIPopupCanvas.gameObject.SetActive(isActive);
@@ -179,10 +202,21 @@ public class UIManager
 
 /// <summary>
 /// 로컬라이징처리를 할 때 사용할 인터페이스
+/// 텍스트 출력이 있는 클래스에 붙여서 사용.
 /// </summary>
 public interface ITextChanger
 {
     public void InitText();
+}
+
+
+/// <summary>
+/// UIPopup클래스 중 Blocker의 클릭으로 취소될 수 있는 UIPopup에 붙여서 사용.
+/// UIPopup의 클릭 가림막을 눌러 UIPopup을 닫을 수 있음.
+/// </summary>
+public interface IBlockerCanCloseUIPopup
+{
+    public void BlockerClose();
 }
 
 

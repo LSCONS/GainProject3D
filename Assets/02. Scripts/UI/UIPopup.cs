@@ -10,7 +10,7 @@ public class UIPopup : UIBase
     /// </summary>
     public virtual void UIOpen()
     {
-        ManagerHub.Instance.UIManager.AddUIPopupCount();                    //UIPopup의 개수를 늘리고 Canvas를 활성화
+        ManagerHub.Instance.UIManager.AddListUIPopup(this);                    //UIPopup의 개수를 늘리고 Canvas를 활성화
         ManagerHub.Instance.UIManager.SetSiblingOpenUIPopup(transform);     //UIPopupCanvas의 맨 뒤에 렌더링
         transform.localScale = closeScaleVector;                            //닫히는 스케일 조정
         gameObject.SetActive(true);                                         //활성화
@@ -27,7 +27,7 @@ public class UIPopup : UIBase
         closeSequence = DOTween.Sequence();
         closeSequence.Append(transform.DOScale(closeScaleVector, 0.3f));
         closeSequence.AppendCallback(() => gameObject.SetActive(false));
-        closeSequence.AppendCallback(() => ManagerHub.Instance.UIManager.RemoveUIPopupCount());
+        closeSequence.AppendCallback(() => ManagerHub.Instance.UIManager.RemoveQueueUIPopup(this));
         closeSequence.AppendCallback(() => closeSequence = null);
         closeSequence.AppendCallback(() => ManagerHub.Instance.UIManager.SetSiblingCloseUIPopup(transform));
     }

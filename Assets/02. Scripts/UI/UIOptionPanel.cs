@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-public class UIOptionPanel : UIPopup, ITextChanger
+public class UIOptionPanel : UIPopup, ITextChanger, IBlockerCanCloseUIPopup
 {
     [field: SerializeField] private TextMeshProUGUI TextOptionTitle { get; set; }
     [field: SerializeField] private TextMeshProUGUI TextApply { get; set; }
@@ -90,5 +90,14 @@ public class UIOptionPanel : UIPopup, ITextChanger
             );
 
         BtnOptionApply.interactable = isChange ? true : false;
+    }
+
+
+    /// <summary>
+    /// 가림막을 눌러 해당 창을 닫을 수 있도록 설정.
+    /// </summary>
+    public void BlockerClose()
+    {
+        BtnOptionCancel.onClick?.Invoke();
     }
 }
