@@ -21,6 +21,11 @@ public class UIOptionOpen : UIPermanent, ITextChanger
         InitText();
     }
 
+    public void InitFont()
+    {
+        TextOptionOpen.font = ManagerHub.Instance.TextManager.nowFont;
+    }
+
 
     /// <summary>
     /// 설정 언어에 맞춰 텍스트를 변환해주는 메서드

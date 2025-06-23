@@ -91,11 +91,13 @@ public class UIManager
     /// 선택된 언어로 Text들을 초기화해주는 메서드
     /// </summary>
     /// <param name="eLanguage"></param>
-    public void ChangeLanguage(ELanguage eLanguage)
+    public async void ChangeLanguage(ELanguage eLanguage)
     {
+        await ManagerHub.Instance.TextManager.InitFont(eLanguage);
         ManagerHub.Instance.TextManager.InitDictTextToString(eLanguage);
         foreach(ITextChanger changer in ListTextChanger)
         {
+            changer.InitFont();
             changer.InitText();
         }
     }
@@ -206,7 +208,16 @@ public class UIManager
 /// </summary>
 public interface ITextChanger
 {
+    /// <summary>
+    /// Text의 출력을 초기화해주는 메서드
+    /// </summary>
     public void InitText();
+
+
+    /// <summary>
+    /// Text의 Font를 초기화해주는 메서드
+    /// </summary>
+    public void InitFont();
 }
 
 

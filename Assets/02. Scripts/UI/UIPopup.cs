@@ -10,6 +10,7 @@ public class UIPopup : UIBase
     /// </summary>
     public virtual void UIOpen()
     {
+        if (ManagerHub.Instance.UIManager.ListUIPopup.Contains(this)) return;
         ManagerHub.Instance.UIManager.AddListUIPopup(this);                    //UIPopup의 개수를 늘리고 Canvas를 활성화
         ManagerHub.Instance.UIManager.SetSiblingOpenUIPopup(transform);     //UIPopupCanvas의 맨 뒤에 렌더링
         transform.localScale = closeScaleVector;                            //닫히는 스케일 조정

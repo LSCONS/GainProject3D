@@ -20,6 +20,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 398fe7c71c2cb9a46aef52f81e4bc573
+    m_Address: German
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 447282fdad4ab414586ca01f69dbcb17
     m_Address: Img_OptionPanel
     m_ReadOnly: 0
@@ -30,8 +35,33 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9b8a92a0d7098b04892ad5bd80e5b3fd
+    m_Address: Japan
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: bd356a04e3fad2948bda4644b1aadbd1
     m_Address: UIPopupSelect
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c57451951fc1f6d428ae767cc0960dad
+    m_Address: Korean
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e29798f2638911a40b60d7424c211951
+    m_Address: Spanish
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ee4a9d0057f1594489f06a6d72441b1b
+    m_Address: China
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f0e7e6deab5817246a3ff847688ab083
+    m_Address: English
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

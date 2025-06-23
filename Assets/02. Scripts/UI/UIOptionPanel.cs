@@ -30,11 +30,24 @@ public class UIOptionPanel : UIPopup, ITextChanger, IBlockerCanCloseUIPopup
     {
         UIOptionLanguageSetting?.Init();
         closeScaleVector = Vector3.zero;
+        InitFont();
         InitText();
         AddBtnEvent();
         base.Init();
     }
-    
+
+
+    /// <summary>
+    /// 텍스트의 폰트를 초기화하는 메서드
+    /// </summary>
+    public void InitFont()
+    {
+        TextOptionTitle.font = ManagerHub.Instance.TextManager.nowFont;
+        TextApply.font = ManagerHub.Instance.TextManager.nowFont;
+        TextCancel.font = ManagerHub.Instance.TextManager.nowFont;
+        UIOptionLanguageSetting?.InitFont();
+    }
+
 
     /// <summary>
     /// 텍스트를 언어에 맞춰 초기화하는 메서드

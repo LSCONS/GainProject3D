@@ -1,5 +1,6 @@
 using DG.Tweening;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -20,8 +21,7 @@ public class UIPopupSelect : UIPopup, IBlockerCanCloseUIPopup
     public void Init(UnityAction yesAction, UnityAction noAction, string Title, string Description, Vector3? closeScaleVec = null)
     {
         closeScaleVector = closeScaleVec ?? Vector3.zero;
-        TextTitle.text = Title;
-        TextDescription.text = Description;
+        InitText(Title, Description);
         RemoveAllBtnEvent();
         AddBtnEvent(yesAction, noAction);
         UIOpen();
@@ -43,6 +43,20 @@ public class UIPopupSelect : UIPopup, IBlockerCanCloseUIPopup
     public override void UIClose()
     {
         base.UIClose();
+    }
+
+
+    /// <summary>
+    /// 텍스트를 초기화해주는 메서드
+    /// </summary>
+    /// <param name="Title">팝업의 제목</param>
+    /// <param name="Description">팝업의 설명</param>
+    private void InitText(string Title, string Description)
+    {
+        TextTitle.font = ManagerHub.Instance.TextManager.nowFont;
+        TextDescription.font = ManagerHub.Instance.TextManager.nowFont;
+        TextTitle.text = Title;
+        TextDescription.text = Description;
     }
 
 

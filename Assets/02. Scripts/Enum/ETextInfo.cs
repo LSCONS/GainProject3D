@@ -15,4 +15,5 @@ public enum ETextInfo
     Option_LanguageChange,	//Language Change
     Text_Aplly,	//Apply
     Text_Cancel,	//Cancel
+    Loading_IsLoading,	//Loading...
 }

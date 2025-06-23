@@ -1,11 +1,15 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using TMPro;
 using Trismegistus.SmartFormat;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
 public class TextManager
 {
     private Dictionary<ETextInfo, string> DictETextToString = new(); //텍스트 정보를 저장할 Dictionary
     private Dictionary<string, object> DictTextStrKeyToObj = new(); //초기화 인자로 넣을 Dictionary
+    public TMP_FontAsset nowFont {  get; private set; }
 
     public void Init()
     {
@@ -81,5 +85,16 @@ public class TextManager
     {
         DictETextToString.Clear();
         DictETextToString = CSVLoader.LoadText(eLanguage);
+    }
+
+
+    /// <summary>
+    /// 폰트를 설정 언어로 초기화하는 메서드
+    /// </summary>
+    /// <param name="eLanguage">설정할 언어</param>
+    /// <returns></returns>
+    public async Task InitFont(ELanguage eLanguage)
+    {
+        nowFont = await ManagerHub.Instance.ResourceManager.LoadFont(eLanguage);
     }
 }

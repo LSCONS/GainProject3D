@@ -33,6 +33,15 @@ public class UIOptionLanguageSetting : ITextChanger
 
 
     /// <summary>
+    /// 텍스트의 폰트를 초기화하는 메서드
+    /// </summary>
+    public void InitFont()
+    {
+        TextSettingLanguage.font = ManagerHub.Instance.TextManager.nowFont;
+    }
+
+
+    /// <summary>
     /// 텍스트를 언어에 맞춰 초기화하는 메서드
     /// </summary>
     public void InitText()
