@@ -37,7 +37,7 @@ public class UIOptionLanguageSetting : ITextChanger
     /// </summary>
     public void InitText()
     {
-        TextSettingLanguage.text = ManagerHub.Instance.TextManager[ETextInfo.Option_LanguageText];
+        TextSettingLanguage.text = ManagerHub.Instance.TextManager[ETextInfo.Option_LanguageChange];
     }
 
 
