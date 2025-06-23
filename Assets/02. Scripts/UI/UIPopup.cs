@@ -10,12 +10,11 @@ public class UIPopup : UIBase
     /// </summary>
     public virtual void UIOpen()
     {
-        Debug.Log(ManagerHub.Instance.UIManager.openUIPopupCount);
-        ManagerHub.Instance.UIManager.AddUIPopupCount();    //UIPopup의 개수를 늘리고 Canvas를 활성화
-        transform.SetAsLastSibling();                       //UIPopupCanvas의 맨 뒤에 렌더링
-        transform.localScale = closeScaleVector;            //닫히는 스케일 조정
-        gameObject.SetActive(true);                         //활성화
-        transform.DOScale(Vector3.one, 0.3f);               //두트윈 실행
+        ManagerHub.Instance.UIManager.AddUIPopupCount();                    //UIPopup의 개수를 늘리고 Canvas를 활성화
+        ManagerHub.Instance.UIManager.SetSiblingOpenUIPopup(transform);     //UIPopupCanvas의 맨 뒤에 렌더링
+        transform.localScale = closeScaleVector;                            //닫히는 스케일 조정
+        gameObject.SetActive(true);                                         //활성화
+        transform.DOScale(Vector3.one, 0.3f);                               //두트윈 실행
     }
 
 
@@ -24,13 +23,13 @@ public class UIPopup : UIBase
     /// </summary>
     public virtual void UIClose()
     {
-        Debug.Log(ManagerHub.Instance.UIManager.openUIPopupCount);
         if (closeSequence != null) return;
         closeSequence = DOTween.Sequence();
         closeSequence.Append(transform.DOScale(closeScaleVector, 0.3f));
         closeSequence.AppendCallback(() => gameObject.SetActive(false));
         closeSequence.AppendCallback(() => ManagerHub.Instance.UIManager.RemoveUIPopupCount());
         closeSequence.AppendCallback(() => closeSequence = null);
+        closeSequence.AppendCallback(() => ManagerHub.Instance.UIManager.SetSiblingCloseUIPopup(transform));
     }
 
 

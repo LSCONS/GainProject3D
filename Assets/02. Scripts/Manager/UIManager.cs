@@ -7,15 +7,17 @@ public class UIManager
 {
     public Canvas UIPopupCanvas { get; private set; }
     public Canvas UIPermanentCanvas { get; private set; }
-    private List<ITextChanger> ListTextChanger { get; set; } = new();
+    public Transform UIPopupBlocker { get; private set; }
     public Dictionary<EUISibling, UIBase> DictEUIToUIBase { get; private set; } = new();
     public Dictionary<Type, UIBase> DictUIBaseToT { get; private set; } = new();
-    public int openUIPopupCount = 0; //TODO 나중에 private로 변환
+    private List<ITextChanger> ListTextChanger { get; set; } = new();
+    private int openUIPopupCount = 0;
 
     public void Awake()
     {
         UIPopupCanvas       = GameObject.Find("UIPopupCanvas").GetComponent<Canvas>();
         UIPermanentCanvas   = GameObject.Find("UIPermanentCanvas").GetComponent<Canvas>();
+        UIPopupBlocker      = UIPopupCanvas.transform.GetChild(0);
         Init();
     }
 
@@ -30,6 +32,21 @@ public class UIManager
             uIBase.Init();
         }
         CheckIsUiPopupOpen();
+    }
+
+
+    public void SetSiblingOpenUIPopup(Transform trUIPopup)
+    {
+        UIPopupBlocker.SetAsLastSibling();
+        trUIPopup.SetAsLastSibling();
+    }
+
+
+    public void SetSiblingCloseUIPopup(Transform trUIPopup)
+    {
+        int blockerIndex = UIPopupBlocker.GetSiblingIndex();
+        if(blockerIndex > 0) UIPopupBlocker.SetSiblingIndex(blockerIndex - 1);
+        trUIPopup.SetAsFirstSibling();
     }
 
 
