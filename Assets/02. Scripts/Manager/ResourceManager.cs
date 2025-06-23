@@ -1,7 +1,11 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using UnityEngine.Audio;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.UI;
 
@@ -11,6 +15,9 @@ public class ResourceManager
     public Button Btn_SelectLanguage { get; private set; }
     public UIOptionOpen UIOptionOpen { get; private set; }
     public UIOptionPanel UIOptionPanel { get; private set; }
+    public AudioSource AudioSource { get; private set; }
+    public AudioMixer AudioMixer { get; private set; }
+    public Dictionary<EAudioClip, AudioClipData> DictEClipToData { get; private set; } = new();
 
     public async Task Awake()
     {
@@ -18,6 +25,11 @@ public class ResourceManager
         Btn_SelectLanguage  = await LoadObjectResource<Button>("Btn_SelectLanguage");
         UIOptionOpen        = await LoadObjectResource<UIOptionOpen>("Img_OptionOpen");
         UIOptionPanel       = await LoadObjectResource<UIOptionPanel>("Img_OptionPanel");
+        AudioSource         = await LoadObjectResource<AudioSource>("AudioSource");
+
+        AudioMixer          = await LoadTypeResource<AudioMixer>("AudioMixer");
+
+        DictEClipToData     = await LoadAudioDictionary("AudioClipSO");
         return;
     }
 
@@ -76,5 +88,50 @@ public class ResourceManager
             Debug.LogError($"어드레서블 로딩 실패: {temp.OperationException?.Message}");
         }
         return data;
+    }
+
+
+    /// <summary>
+    /// 데이터를 원하는 타입으로 어드레서블을 통해 불러오는 메서드
+    /// </summary>
+    /// <typeparam name="T">가져올 타입</typeparam>
+    /// <param name="adress">가져올 주소</param>
+    /// <returns>반환 받을 데이터</returns>
+    private async Task<T[]> LoadTypeResources<T>(string adress)
+    {
+        T[] data = default;
+        var temp = Addressables.LoadAssetsAsync<T>(adress);
+        await temp.Task;
+        if (temp.Status == AsyncOperationStatus.Succeeded)
+        {
+            data = temp.Result.ToArray();
+        }
+        else
+        {
+            Debug.LogError($"어드레서블 로딩 실패: {temp.OperationException?.Message}");
+        }
+        return data;
+    }
+
+
+    private async Task<Dictionary<EAudioClip, AudioClipData>> LoadAudioDictionary(string adress)
+    {
+        AudioClipDataSO[] data = await LoadTypeResources<AudioClipDataSO>(adress);
+        Dictionary<EAudioClip, AudioClipData> result = new();
+        foreach (AudioClipDataSO dataSO in data)
+        {
+            foreach (AudioCLipEnumData audioCLipEnumData in dataSO.ListAudioEnumData)
+            {
+                if (!result.ContainsKey(audioCLipEnumData.EAudioClip))
+                {
+                    result[audioCLipEnumData.EAudioClip] = audioCLipEnumData.AudioClipData;
+                }
+                else
+                {
+                    Debug.LogError($"동일한 AudioClipEnum이 있습니다. {audioCLipEnumData.EAudioClip.ToString()}");
+                }
+            }
+        }
+        return result;
     }
 }

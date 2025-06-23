@@ -11,7 +11,7 @@ public class TextManager
     private Dictionary<string, object> DictTextStrKeyToObj = new(); //초기화 인자로 넣을 Dictionary
     public TMP_FontAsset nowFont {  get; private set; }
 
-    public void Init()
+    public void Awake()
     {
         int languageIndex = PlayerPrefs.GetInt(ReadonlyData.LanguagePrefs, (int)ELanguage.English);
         ManagerHub.Instance.UIManager.ChangeLanguage((ELanguage)languageIndex);

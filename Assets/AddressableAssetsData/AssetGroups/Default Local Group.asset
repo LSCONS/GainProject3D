@@ -20,6 +20,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 31995ae44bd0ff641903821a422c761d
+    m_Address: AudioMixer
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 398fe7c71c2cb9a46aef52f81e4bc573
     m_Address: German
     m_ReadOnly: 0
@@ -30,6 +35,12 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 54e7d50ceb4a704448a1b87b3922e05f
+    m_Address: Assets/04. DataSO/AudioClip/BGM_AudioClipDataSO.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - AudioClipSO
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5f029662d07943a44a7643dc5e5ce7ee
     m_Address: Btn_SelectLanguage
     m_ReadOnly: 0
@@ -37,6 +48,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9b8a92a0d7098b04892ad5bd80e5b3fd
     m_Address: Japan
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b25c0369536850d47a6fc56ceb941183
+    m_Address: Audio_Prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
