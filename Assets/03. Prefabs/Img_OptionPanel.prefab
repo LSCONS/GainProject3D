@@ -90,7 +90,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -337,7 +337,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -686,7 +686,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 0.7528807, b: 0.5503144, a: 0.39215687}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -898,7 +898,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 0.112029046, b: 0, a: 0.39215687}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1106,7 +1106,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &5501748575371845113
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1151,7 +1151,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1182,12 +1182,14 @@ MonoBehaviour:
   <TextOptionTitle>k__BackingField: {fileID: 7223949544514433002}
   <TextApply>k__BackingField: {fileID: 8082181355729795061}
   <TextCancel>k__BackingField: {fileID: 5600369352005123395}
-  <TextSelectLanguage>k__BackingField: {fileID: 6219131055205580027}
   <BtnOptionApply>k__BackingField: {fileID: 338488434285911095}
   <BtnOptionCancel>k__BackingField: {fileID: 3881593684833416788}
-  <BtnSelectLanguage>k__BackingField: {fileID: 1092321943231963262}
-  <TrELanguageContent>k__BackingField: {fileID: 3158886298577466147}
-  <ObjELanguageScrollView>k__BackingField: {fileID: 5974139827374411314}
+  <UIOptionLanguageSetting>k__BackingField:
+    <TextSelectLanguage>k__BackingField: {fileID: 5744311066384445765}
+    <TextSettingLanguage>k__BackingField: {fileID: 6219131055205580027}
+    <BtnSelectLanguage>k__BackingField: {fileID: 1092321943231963262}
+    <TrELanguageContent>k__BackingField: {fileID: 3158886298577466147}
+    <ObjELanguageScrollView>k__BackingField: {fileID: 5974139827374411314}
 --- !u!1 &5974139827374411314
 GameObject:
   m_ObjectHideFlags: 0
@@ -1206,7 +1208,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4165521076196918204
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1356,7 +1358,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 0.7528807, b: 0.5503144, a: 0.39215687}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:

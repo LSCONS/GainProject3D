@@ -5,8 +5,8 @@ Menu_Options,Options,옵션,	オプション
 Menu_Exit,Exit,종료,	終了
 Popup_Title,Title,제목,	タイトル
 Popup_Description,Description,설명,	説明
-Popup_LanguageChanger_Title,Language Change,언어 변경,言語変更
 Popup_LanguageChanger_Description,Would you like to change the language to {Language}?,설정 언어를 {Language}로 변경하시겠습니까?,言語を {Language} に変更しますか？
-Text_Setting,Setting,설정,設定
+Option_Title,Setting,설정,設定
+Option_LanguageText,Language Change,언어 변경,言語変更
 Text_Aplly,Apply,적용,適用
 Text_Cancel,Cancel,취소,キャンセル

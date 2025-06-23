@@ -1,4 +1,4 @@
-﻿//EditorCSVEnumWriter에서 자동 생성
+//EditorCSVEnumWriter에서 자동 생성
 /// <summary>
 /// Text의 정보들을 담을 enum
 /// <summary>
@@ -10,9 +10,9 @@ public enum ETextInfo
     Menu_Exit,	//Exit
     Popup_Title,	//Title
     Popup_Description,	//Description
-    Popup_LanguageChanger_Title,	//Language Change
     Popup_LanguageChanger_Description,	//Would you like to change the language to {Language}?
-    Text_Setting,	//Setting
+    Option_Title,	//Setting
+    Option_LanguageText,	//Language Change
     Text_Aplly,	//Apply
     Text_Cancel,	//Cancel
 }

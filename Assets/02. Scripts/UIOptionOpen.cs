@@ -6,7 +6,6 @@ public class UIOptionOpen : UIPermanent, ITextChanger
 {
     [field: SerializeField] private Button BtnOptionOpen { get; set; }
     [field: SerializeField] private TextMeshProUGUI TextOptionOpen { get; set; }
-    [field: SerializeField] public UIOptionPanel UIOptionPanel { get; set; }
 
 
     /// <summary>
@@ -15,11 +14,9 @@ public class UIOptionOpen : UIPermanent, ITextChanger
     public override void Init()
     {
         base.Init();
-        ManagerHub.Instance.UIManager.ListTextChanger.Add(this);
-        ManagerHub.Instance.UIManager.UIOptionOpen = this;
         BtnOptionOpen.onClick.AddListener(() =>
         {
-            ManagerHub.Instance.UIManager.UIOptionPanel.UIOpen();
+            ManagerHub.Instance.UIManager.ReturnDictUIBaseToT<UIOptionPanel>()?.UIOpen();
         });
         InitText();
     }
@@ -30,6 +27,6 @@ public class UIOptionOpen : UIPermanent, ITextChanger
     /// </summary>
     public void InitText()
     {
-        TextOptionOpen.text = ManagerHub.Instance.TextManager[ETextInfo.Text_Setting];
+        TextOptionOpen.text = ManagerHub.Instance.TextManager[ETextInfo.Menu_Options];
     }
 }

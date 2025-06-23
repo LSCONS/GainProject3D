@@ -13,10 +13,10 @@ public class ResourceManager
 
     public async Task Awake()
     {
-        UIPopupSelect = await LoadResource<UIPopupSelect>("UIPopupSelect");
-        Btn_SelectLanguage = await LoadResource<Button>("Btn_SelectLanguage");
-        UIOptionOpen = await LoadResource<UIOptionOpen>("Img_OptionOpen");
-        UIOptionPanel = await LoadResource<UIOptionPanel>("Img_OptionPanel");
+        UIPopupSelect       = await LoadResource<UIPopupSelect>("UIPopupSelect");
+        Btn_SelectLanguage  = await LoadResource<Button>("Btn_SelectLanguage");
+        UIOptionOpen        = await LoadResource<UIOptionOpen>("Img_OptionOpen");
+        UIOptionPanel       = await LoadResource<UIOptionPanel>("Img_OptionPanel");
         return;
     }
 

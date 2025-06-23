@@ -12,7 +12,7 @@ public class ManagerHub : Singleton<ManagerHub>
         base.Awake();
         await ResourceManager.Awake();
         UIManager.Awake();
-        TextManager.Awake();
+        TextManager.Init();
     }
 
 
