@@ -2072,8 +2072,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <TextOptionTitle>k__BackingField: {fileID: 7223949544514433002}
   <TextApply>k__BackingField: {fileID: 8082181355729795061}
+  <TextReset>k__BackingField: {fileID: 2887807107277723218}
   <TextCancel>k__BackingField: {fileID: 5600369352005123395}
   <BtnOptionApply>k__BackingField: {fileID: 338488434285911095}
+  <BtnOptionReset>k__BackingField: {fileID: 4424642536521946880}
   <BtnOptionCancel>k__BackingField: {fileID: 3881593684833416788}
   <TrOptionMenuContent>k__BackingField: {fileID: 2949243460421151461}
   <TrOptionPanelContent>k__BackingField: {fileID: 8302595382107326853}

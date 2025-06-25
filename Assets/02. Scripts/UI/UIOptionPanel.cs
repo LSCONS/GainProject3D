@@ -11,8 +11,10 @@ public class UIOptionPanel : UIPopup, ITextChanger, IBlockerCanCloseUIPopup
 {
     [field: SerializeField] private TextMeshProUGUI         TextOptionTitle         { get; set; }
     [field: SerializeField] private TextMeshProUGUI         TextApply               { get; set; }
+    [field: SerializeField] private TextMeshProUGUI         TextReset               { get; set; }
     [field: SerializeField] private TextMeshProUGUI         TextCancel              { get; set; }
     [field: SerializeField] private Button                  BtnOptionApply          { get; set; }
+    [field: SerializeField] private Button                  BtnOptionReset          { get; set; }
     [field: SerializeField] private Button                  BtnOptionCancel         { get; set; }
     [field: SerializeField] private List<IOptionMenu>       ListOptionMenu          { get; set; } = new();
     [field: SerializeField] public Transform                TrOptionMenuContent     { get; set; }
@@ -74,6 +76,7 @@ public class UIOptionPanel : UIPopup, ITextChanger, IBlockerCanCloseUIPopup
     {
         TextOptionTitle.font = ManagerHub.Instance.TextManager.nowFont;
         TextApply.font = ManagerHub.Instance.TextManager.nowFont;
+        TextReset.font = ManagerHub.Instance.TextManager.nowFont;
         TextCancel.font = ManagerHub.Instance.TextManager.nowFont;
         foreach (IOptionMenu optionMenu in ListOptionMenu)
         {
@@ -89,6 +92,7 @@ public class UIOptionPanel : UIPopup, ITextChanger, IBlockerCanCloseUIPopup
     {
         TextOptionTitle.text    = ManagerHub.Instance.TextManager[ETextInfo.Option_Title];
         TextApply.text          = ManagerHub.Instance.TextManager[ETextInfo.Text_Aplly];
+        TextReset.text          = ManagerHub.Instance.TextManager[ETextInfo.None];
         TextCancel.text         = ManagerHub.Instance.TextManager[ETextInfo.Text_Cancel];
         foreach (IOptionMenu optionMenu in ListOptionMenu)
         {
@@ -131,6 +135,16 @@ public class UIOptionPanel : UIPopup, ITextChanger, IBlockerCanCloseUIPopup
     public void AddBtnApplyEvent(UnityAction action)
     {
         BtnOptionApply.onClick.AddListener(action);
+    }
+
+
+    /// <summary>
+    /// 리셋 버튼에 이벤트를 등록시켜주는 메서드
+    /// </summary>
+    /// <param name="action"></param>
+    public void AddBtnResetEvent(UnityAction action)
+    {
+        BtnOptionReset.onClick.AddListener(action);
     }
 
 
