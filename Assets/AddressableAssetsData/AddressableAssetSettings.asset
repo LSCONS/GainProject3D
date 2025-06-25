@@ -15,7 +15,7 @@ MonoBehaviour:
   m_DefaultGroup: f43699c51ab526f40abe1fc5d202a512
   m_currentHash:
     serializedVersion: 2
-    Hash: 22d5e026c128d26e8ed8121ee3ee55c9
+    Hash: 84ae18d8dc147a60825858ada0588783
   m_OptimizeCatalogSize: 0
   m_BuildRemoteCatalog: 0
   m_CatalogRequestsTimeout: 0
@@ -100,6 +100,7 @@ MonoBehaviour:
     m_LabelNames:
     - default
     - AudioClipSO
+    - OptionMenu
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: dbcd2c4f9e4993949a92b54875103aad, type: 2}

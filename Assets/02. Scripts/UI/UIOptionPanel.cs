@@ -2,23 +2,26 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class UIOptionPanel : UIPopup, ITextChanger, IBlockerCanCloseUIPopup
 {
-    [field: SerializeField] private TextMeshProUGUI TextOptionTitle { get; set; }
-    [field: SerializeField] private TextMeshProUGUI TextApply { get; set; }
-    [field: SerializeField] private TextMeshProUGUI TextCancel { get; set; }
-    [field: SerializeField] private Button BtnOptionApply { get; set; }
-    [field: SerializeField] private Button BtnOptionCancel { get; set; }
-    [field: SerializeField] private UIOptionLanguageSetting UIOptionLanguageSetting { get; set; }
-
+    [field: SerializeField] private TextMeshProUGUI         TextOptionTitle         { get; set; }
+    [field: SerializeField] private TextMeshProUGUI         TextApply               { get; set; }
+    [field: SerializeField] private TextMeshProUGUI         TextCancel              { get; set; }
+    [field: SerializeField] private Button                  BtnOptionApply          { get; set; }
+    [field: SerializeField] private Button                  BtnOptionCancel         { get; set; }
+    [field: SerializeField] private List<IOptionMenu>       ListOptionMenu          { get; set; } = new();
+    [field: SerializeField] public Transform                TrOptionMenuContent     { get; set; }
+    [field: SerializeField] public Transform                TrOptionPanelContent    { get; set; }
+    private IOptionMenu curOptionMenu;
 
     private void OnEnable()
     {
-        UIOptionLanguageSetting.OnEnable();
+        curOptionMenu?.OnEnable();
         BtnOptionApply.interactable = false;
     }
 
@@ -28,12 +31,39 @@ public class UIOptionPanel : UIPopup, ITextChanger, IBlockerCanCloseUIPopup
     /// </summary>
     public override void Init()
     {
-        UIOptionLanguageSetting?.Init();
+        base.Init();
+        InitListOptionMenu();
         closeScaleVector = Vector3.zero;
         InitFont();
         InitText();
         AddBtnEvent();
-        base.Init();
+    }
+
+    /// <summary>
+    /// ListOptionMenu를 초기화하는 메서드.
+    /// </summary>
+    private void InitListOptionMenu()
+    {
+        List<IOptionMenu> ListIOptionMenuResource = ManagerHub.Instance.ResourceManager.ListOptionMenu;
+
+        foreach (IOptionMenu optionMenu in ListIOptionMenuResource)
+        {
+            MonoBehaviour prefab = optionMenu as MonoBehaviour;
+            if (prefab == null)
+            {
+                Debug.LogError($"optionMenu가 MonoBehaviour를 상속받지 않았습니다. {optionMenu.GetType()}");
+                continue;
+            }
+
+            IOptionMenu menu = Instantiate(prefab, TrOptionPanelContent) as IOptionMenu;
+            if (menu == null)
+            {
+                Debug.LogError($"{prefab.name} 인스턴스가 IOptionMenu를 구현하지 않습니다.");
+                continue;
+            }
+            ListOptionMenu.Add(menu);
+            menu.Init();
+        }
     }
 
 
@@ -45,7 +75,10 @@ public class UIOptionPanel : UIPopup, ITextChanger, IBlockerCanCloseUIPopup
         TextOptionTitle.font = ManagerHub.Instance.TextManager.nowFont;
         TextApply.font = ManagerHub.Instance.TextManager.nowFont;
         TextCancel.font = ManagerHub.Instance.TextManager.nowFont;
-        UIOptionLanguageSetting?.InitFont();
+        foreach (IOptionMenu optionMenu in ListOptionMenu)
+        {
+            if (optionMenu is ITextChanger textChanger) textChanger.InitFont();
+        }
     }
 
 
@@ -57,7 +90,23 @@ public class UIOptionPanel : UIPopup, ITextChanger, IBlockerCanCloseUIPopup
         TextOptionTitle.text    = ManagerHub.Instance.TextManager[ETextInfo.Option_Title];
         TextApply.text          = ManagerHub.Instance.TextManager[ETextInfo.Text_Aplly];
         TextCancel.text         = ManagerHub.Instance.TextManager[ETextInfo.Text_Cancel];
-        UIOptionLanguageSetting?.InitText();
+        foreach (IOptionMenu optionMenu in ListOptionMenu)
+        {
+            if (optionMenu is ITextChanger textChanger) textChanger.InitText();
+        }
+    }
+
+
+    /// <summary>
+    /// 현재 선택한 메뉴를 바꿔주는 메서드
+    /// </summary>
+    /// <param name="optionMenu"></param>
+    public void ChangeOptionMenu(IOptionMenu optionMenu)
+    {
+        if (optionMenu == curOptionMenu) return;
+        curOptionMenu?.UIClose();
+        curOptionMenu = optionMenu;
+        curOptionMenu.UIOpen();
     }
 
 
@@ -66,7 +115,10 @@ public class UIOptionPanel : UIPopup, ITextChanger, IBlockerCanCloseUIPopup
     /// </summary>
     private void AddBtnEvent()
     {
-        UIOptionLanguageSetting?.AddBtnEvent();
+        foreach (IOptionMenu optionMenu in ListOptionMenu)
+        {
+            optionMenu.AddBtnEvent();
+        }
         AddBtnCancelEvent(UIClose);
         AddBtnApplyEvent(IsChangeSetting);
     }
@@ -97,12 +149,15 @@ public class UIOptionPanel : UIPopup, ITextChanger, IBlockerCanCloseUIPopup
     /// </summary>
     public void IsChangeSetting()
     {
-        bool isChange =
-            (
-                UIOptionLanguageSetting.IsChangeLanguage()
-            );
-
-        BtnOptionApply.interactable = isChange ? true : false;
+        foreach (IOptionMenu optionMenu in ListOptionMenu)
+        {
+            if (optionMenu.IsChangeSetting())
+            {
+                BtnOptionApply.interactable = true;
+                return;
+            }
+        }
+        BtnOptionApply.interactable = false;
     }
 
 
@@ -112,5 +167,14 @@ public class UIOptionPanel : UIPopup, ITextChanger, IBlockerCanCloseUIPopup
     public void BlockerClose()
     {
         BtnOptionCancel.onClick?.Invoke();
+    }
+
+
+    /// <summary>
+    /// ListOptionMenu의 요소를 추가하는 메서드.
+    /// </summary>
+    public void AddListOptionMenu(IOptionMenu optionMenu)
+    {
+        ListOptionMenu.Add(optionMenu);
     }
 }

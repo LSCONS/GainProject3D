@@ -26,7 +26,7 @@ public class UIOptionLanguageView
         {
             ObjELanguageScrollView.SetActive(false);
             selectLanguageChangeView.SetTextELanguage(eLanguage);
-            ManagerHub.Instance.UIManager.ReturnDictUIBaseToT<UIOptionPanel>().IsChangeSetting();
+            ManagerHub.Instance.UIManager.GetDictUIBaseToT<UIOptionPanel>().IsChangeSetting();
         });
     }
 

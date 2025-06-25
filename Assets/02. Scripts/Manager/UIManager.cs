@@ -83,7 +83,7 @@ public class UIManager
     /// <param name="closeScaleVec">닫치는 연출을 설정할 Scale벡터</param>
     public void InitUIPopupSelect(UnityAction yesAction, UnityAction noAction, string Title, string Description, Vector3? closeScaleVec = null)
     {
-        ReturnDictUIBaseToT<UIPopupSelect>()?.Init(yesAction, noAction, Title, Description, closeScaleVec);
+        GetDictUIBaseToT<UIPopupSelect>()?.Init(yesAction, noAction, Title, Description, closeScaleVec);
     }
 
 
@@ -191,7 +191,7 @@ public class UIManager
     /// <typeparam name="T">반환 받고 싶은 제너릭 타입</typeparam>
     /// <param name="uiBase"></param>
     /// <returns></returns>
-    public T ReturnDictUIBaseToT<T>() where T : UIBase
+    public T GetDictUIBaseToT<T>() where T : UIBase
     {
         if(DictUIBaseToT.TryGetValue(typeof(T), out UIBase result))
         {

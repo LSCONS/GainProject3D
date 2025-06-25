@@ -5,8 +5,10 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [Serializable]
-public class UIOptionLanguageSetting : ITextChanger
+public class UIOptionLanguageSetting : MonoBehaviour, IOptionMenu, ITextChanger
 {
+    //해당 ITextChanger 인터페이스는 UIManager의 List에 추가되지 않음.
+
     [field: SerializeField] private TextMeshProUGUI TextSelectLanguage { get; set; }
     [field: SerializeField] private TextMeshProUGUI TextSettingLanguage { get; set; }
     [field: SerializeField] private Button BtnSelectLanguage { get; set; }
@@ -14,7 +16,8 @@ public class UIOptionLanguageSetting : ITextChanger
     [field: SerializeField] private GameObject ObjELanguageScrollView { get; set; }
     private UIOptionLanguageView selectLanguageView;
     private List<UIOptionLanguageView> ListLanguageViews { get; set; } = new();
-    private UIOptionPanel uiOptionPanel => ManagerHub.Instance.UIManager.ReturnDictUIBaseToT<UIOptionPanel>();
+    private UIOptionPanel uiOptionPanel => ManagerHub.Instance.UIManager.GetDictUIBaseToT<UIOptionPanel>();
+    private UIOptionMenu UIOptionMenu { get; set; }
 
 
     public void OnEnable()
@@ -28,7 +31,30 @@ public class UIOptionLanguageSetting : ITextChanger
     /// </summary>
     public void Init()
     {
+        //옵션 메뉴에 버튼 패널 생성
+        //옵션 리스트에 해당 패널 연결
+        UIOptionMenu = new UIOptionMenu(ETextInfo.None);
+
         CreateLanguageChangeView();
+        UIOptionMenu.Init();
+    }
+
+
+    /// <summary>
+    /// 해당 패널을 열 때 실행되는 메서드
+    /// </summary>
+    public void UIOpen()
+    {
+        gameObject.SetActive(true);
+    }
+
+
+    /// <summary>
+    /// 해당 패널을 닫을 때 실행되는 메서드
+    /// </summary>
+    public void UIClose()
+    {
+        gameObject.SetActive(false);
     }
 
 
@@ -38,6 +64,7 @@ public class UIOptionLanguageSetting : ITextChanger
     public void InitFont()
     {
         TextSettingLanguage.font = ManagerHub.Instance.TextManager.nowFont;
+        UIOptionMenu.InitFont();
     }
 
 
@@ -47,6 +74,7 @@ public class UIOptionLanguageSetting : ITextChanger
     public void InitText()
     {
         TextSettingLanguage.text = ManagerHub.Instance.TextManager[ETextInfo.Option_LanguageChange];
+        UIOptionMenu.InitText();
     }
 
 
@@ -61,17 +89,6 @@ public class UIOptionLanguageSetting : ITextChanger
         uiOptionPanel.AddBtnApplyEvent(() => ObjELanguageScrollView.SetActive(false));
 
         uiOptionPanel.AddBtnCancelEvent(() => ObjELanguageScrollView.SetActive(false));
-    }
-
-
-    /// <summary>
-    /// 언어 세팅이 바뀌었는지 확인하고 반환하는 메서드
-    /// </summary>
-    /// <returns>바뀌었다면 true, 그대로면 false</returns>
-    public bool IsChangeLanguage()
-    {
-        bool isChange = selectLanguageView.GetELanguage() != ManagerHub.Instance.DataManager.NowLanguage;
-        return isChange;
     }
 
 
@@ -91,5 +108,16 @@ public class UIOptionLanguageSetting : ITextChanger
             view.Init(BtnLanguage, TextLanguage, eLanguage, ObjELanguageScrollView, selectLanguageView);
             ListLanguageViews.Add(view);
         }
+    }
+
+
+    /// <summary>
+    /// 언어 세팅이 바뀌었는지 확인하고 반환하는 메서드
+    /// </summary>
+    /// <returns>바뀌었다면 true, 그대로면 false</returns>
+    public bool IsChangeSetting()
+    {
+        bool isChange = selectLanguageView.GetELanguage() != ManagerHub.Instance.DataManager.NowLanguage;
+        return isChange;
     }
 }

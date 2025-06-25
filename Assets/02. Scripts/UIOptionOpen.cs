@@ -16,7 +16,7 @@ public class UIOptionOpen : UIPermanent, ITextChanger
         base.Init();
         BtnOptionOpen.onClick.AddListener(() =>
         {
-            ManagerHub.Instance.UIManager.ReturnDictUIBaseToT<UIOptionPanel>()?.UIOpen();
+            ManagerHub.Instance.UIManager.GetDictUIBaseToT<UIOptionPanel>()?.UIOpen();
         });
         InitText();
     }
