@@ -92,7 +92,7 @@ public class UIOptionPanel : UIPopup, ITextChanger, IBlockerCanCloseUIPopup
     {
         TextOptionTitle.text    = ManagerHub.Instance.TextManager[ETextInfo.Option_Title];
         TextApply.text          = ManagerHub.Instance.TextManager[ETextInfo.Text_Aplly];
-        TextReset.text          = ManagerHub.Instance.TextManager[ETextInfo.None];
+        TextReset.text          = ManagerHub.Instance.TextManager[ETextInfo.Text_Reset];
         TextCancel.text         = ManagerHub.Instance.TextManager[ETextInfo.Text_Cancel];
         foreach (IOptionMenu optionMenu in ListOptionMenu)
         {

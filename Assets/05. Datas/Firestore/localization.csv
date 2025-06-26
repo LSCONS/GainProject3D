@@ -1,13 +1,21 @@
 key,English,Korean,Japan,China,German,Spanish
 None,[Not Found Text],[Not Found Text],[Not Found Text],[Not Found Text],[Not Found Text],[Not Found Text]
-Menu_Start,Start,시작,	スタート,开始,Start,Inicio
-Menu_Options,Options,옵션,	オプション,选项,Optionen,Opciones
-Menu_Exit,Exit,종료,	終了,退出,Beenden,Salir
-Popup_Title,Title,제목,	タイトル,标题,Titel,Título
-Popup_Description,Description,설명,	説明,描述,Beschreibung,Descripción
+Menu_Start,Start,시작,スタート,开始,Start,Inicio
+Menu_Options,Options,옵션,オプション,选项,Optionen,Opciones
+Menu_Exit,Exit,종료,終了,退出,Beenden,Salir
+Popup_Title,Title,제목,タイトル,标题,Titel,Título
+Popup_Description,Description,설명,説明,描述,Beschreibung,Descripción
 Popup_LanguageChanger_Description,Would you like to change the language to {Language}?,설정 언어를 {Language}로 변경하시겠습니까?,言語を {Language} に変更しますか？,是否要将语言更改为{Language}？,Möchten Sie die Sprache auf {Language} ändern?,¿Desea cambiar el idioma a {Language}?
 Option_Title,Setting,설정,設定,设置,Einstellungen,Configuración
-Option_LanguageChange,Language Change,언어 변경,言語変更,语言更改,Sprachwechsel,Cambio de idioma
+Option_Language_LanguageChange,Language Change,언어 변경,言語変更,语言更改,Sprachwechsel,Cambio de idioma
+Option_Menu_SettingLanguage,Language Settings,언어 설정,言語設定,语言设置,Spracheinstellungen,Configuración de idioma
+Option_Menu_SettingVolume,Sound Settings,소리 설정,サウンド設定,声音设置,Audioeinstellungen,Configuración de sonido
+Option_Volume_VolumeChange,Volume Control,음량 조절,音量調整,音量调节,Lautstärkeregelung,Control de volumen
+Option_Volume_Master,Master Volume,전체 음량,マスターボリューム,主音量,Gesamtlautstärke,Volumen maestro
+Option_Volume_BGM,BGM Volume,배경음,BGM音量,背景音乐音量,BGM-Lautstärke,Volumen de BGM
+Option_Volume_SFX,SFX Volume,효과음,効果音音量,音效音量,SFX-Lautstärke,Volumen de efectos
+Option_Volume_VOICE,Voice Volume,보이스,ボイス音量,语音音量,Stimmenlautstärke,Volumen de voz
 Text_Aplly,Apply,적용,適用,应用,Übernehmen,Aplicar
+Text_Reset,Reset,초기화,リセット,重置,Zurücksetzen,Restablecer
 Text_Cancel,Cancel,취소,キャンセル,取消,Abbrechen,Cancelar
-Loading_IsLoading,Loading...,로딩 중입니다.,読み込み中です。,正在加载中。,Wird geladen...,Cargando...
+Loading_IsLoading,Loading…,로딩 중입니다.,読み込み中です。,正在加载中。,Wird geladen…,Cargando…

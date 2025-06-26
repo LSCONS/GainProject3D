@@ -3,16 +3,16 @@ using UnityEngine.Audio;
 
 public class AudioVolumeSetting
 {
-    public AudioMixerGroup groupBGM { get; private set; }
-    public AudioMixerGroup groupSFX { get; private set; }
-    public AudioMixerGroup groupVoice { get; private set; }
+    public AudioMixerGroup GroupBGM { get; private set; }
+    public AudioMixerGroup GroupSFX { get; private set; }
+    public AudioMixerGroup GroupVoice { get; private set; }
 
     public void Init()
     {
-        AudioMixer audioMixer = ManagerHub.Instance.ResourceManager.AudioMixer;
-        groupBGM = audioMixer.FindMatchingGroups($"{ReadonlyData.AudioGroupName_Master}/{ReadonlyData.AudioGroupName_BGM}")[0];
-        groupSFX = audioMixer.FindMatchingGroups($"{ReadonlyData.AudioGroupName_Master}/{ReadonlyData.AudioGroupName_SFX}")[0];
-        groupVoice = audioMixer.FindMatchingGroups($"{ReadonlyData.AudioGroupName_Master}/{ReadonlyData.AudioGroupName_Voice}")[0];
+        AudioMixer    audioMixer = ManagerHub.Instance.ResourceManager.AudioMixer;
+        GroupBGM    = audioMixer.FindMatchingGroups($"{ReadonlyData.AudioGroupName_Master}/{ReadonlyData.AudioGroupName_BGM}")[0];
+        GroupSFX    = audioMixer.FindMatchingGroups($"{ReadonlyData.AudioGroupName_Master}/{ReadonlyData.AudioGroupName_SFX}")[0];
+        GroupVoice  = audioMixer.FindMatchingGroups($"{ReadonlyData.AudioGroupName_Master}/{ReadonlyData.AudioGroupName_Voice}")[0];
     }
 
 }

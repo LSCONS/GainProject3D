@@ -33,7 +33,7 @@ public class UIOptionLanguageSetting : MonoBehaviour, IOptionMenu, ITextChanger
     {
         //옵션 메뉴에 버튼 패널 생성
         //옵션 리스트에 해당 패널 연결
-        UIOptionMenu = new UIOptionMenu(ETextInfo.None);
+        UIOptionMenu = new UIOptionMenu(ETextInfo.Option_Menu_SettingLanguage);
 
         CreateLanguageChangeView();
         UIOptionMenu.Init();
@@ -73,7 +73,7 @@ public class UIOptionLanguageSetting : MonoBehaviour, IOptionMenu, ITextChanger
     /// </summary>
     public void InitText()
     {
-        TextSettingLanguage.text = ManagerHub.Instance.TextManager[ETextInfo.Option_LanguageChange];
+        TextSettingLanguage.text = ManagerHub.Instance.TextManager[ETextInfo.Option_Language_LanguageChange];
         UIOptionMenu.InitText();
     }
 
